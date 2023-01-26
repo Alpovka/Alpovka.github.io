@@ -59,9 +59,14 @@ function Project({ project }: ProjectProps) {
         {usedTechs?.map((tech, key) => (
           <motion.div
             key={key}
-            className="flex items w-6 h-6 xl:w-12 xl:h-12 sm:w-8 sm:h-8 "
+            className="relative flex items w-6 h-6 xl:w-12 xl:h-12 sm:w-8 sm:h-8 "
           >
-            <img src={tech.techImgUrl} className="object-contain " />
+            <Image
+              alt="tech img"
+              src={tech.techImgUrl}
+              fill
+              className="object-contain "
+            />
           </motion.div>
         ))}
       </div>
