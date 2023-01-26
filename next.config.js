@@ -2,12 +2,8 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["imgur.com", "i.imgur.com"],
-    loader: "akamai",
-    path: "",
-  },
-  basePath: "/Alpovka.github.io",
-  assetPrefix: "/Alpovka.github.io",
+    domains: ["imgur.com", "i.imgur.com"]
+  }
 }
 
 module.exports = nextConfig
