@@ -16,7 +16,7 @@ function Skills({}: Props) {
         </h3>
 
         <h3 className="uppercase tracking-[3px] text-gray-500 text-sm">
-          {!isMobile ? "Hover over for" : "Hold your press to"} proficiency
+          {!isMobile ? "Hover over for" : "Press for"} proficiency
         </h3>
       </div>
 
