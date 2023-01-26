@@ -1,5 +1,6 @@
 import useMediaQuery from "@/hooks/useMediaQuery";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import React from "react";
 
 type Props = {
@@ -39,10 +40,14 @@ const SkillCricle = ({ skill, directionLeft }: Props) => {
       }}
       className="group relative flex cursor-pointer"
     >
-      <img
-        src={skill.techImgUrl}
-        className="border border-gray-500 p-3 object-contain w-16 h-16 xl:w-32 xl:h-32 sm:w-28 sm:h-28 filter group-hover:grayscale transition duration-300 ease-in-out"
-      />
+      <div className="relative border border-gray-500 w-16 h-16 xl:w-32 xl:h-32 sm:w-28 sm:h-28 filter group-hover:grayscale transition duration-300 ease-in-out">
+        <Image
+          alt="tech img"
+          src={skill.techImgUrl}
+          fill
+          className="object-contain p-3"
+        />
+      </div>
       <div className="absolute opacity-0 group-hover:opacity-80 transition duration-300 ease-in-out group-hover:bg-orange-100 w-16 h-16 xl:w-32 xl:h-32 sm:w-28 sm:h-28 z-0">
         <div className="flex items-center justify-center h-full">
           <p className="text-xl sm:text-2xl font-bold text-black opacity-100 select-none">

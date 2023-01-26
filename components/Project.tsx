@@ -1,5 +1,6 @@
 import { SKILLS } from "@/constants";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import React from "react";
 import { RxCross1 } from "react-icons/rx";
 
@@ -19,12 +20,12 @@ function Project({ project }: ProjectProps) {
     project.techs.includes(skill.name)
   );
 
-  const blockCondition = project.name === "MessengerMermaids";
+  const blockCondition = project.id === "5";
 
   return (
     <div className="w-screen flex-shrink-0 snap-center flex flex-col space-y-6 md:space-y-10 items-center justify-center h-screen mt-12 px-4">
       {project.imageUrl ? (
-        <motion.img
+        <motion.div
           initial={{
             y: -300,
             opacity: 1,
@@ -39,10 +40,16 @@ function Project({ project }: ProjectProps) {
           viewport={{
             once: true,
           }}
-          src={project.imageUrl}
-          alt="Project Img"
-          className="w-[250px] md:w-[300px] -mb-4"
-        />
+          className="-mb-4"
+        >
+          <Image
+            src={project.imageUrl}
+            alt="Project Img"
+            width={300}
+            height={400}
+            className=" w-[250px] md:w-[300px] 2xl:w-[300px] -mb-4"
+          />
+        </motion.div>
       ) : null}
 
       <h4 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-center">

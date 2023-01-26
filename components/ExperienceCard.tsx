@@ -1,6 +1,7 @@
 import useMediaQuery from "@/hooks/useMediaQuery";
 import { MapPinIcon } from "@heroicons/react/24/solid";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { useState } from "react";
 
 type ExperienceType = {
@@ -63,7 +64,7 @@ export default function ExperienceCard({ data }: ExperienceCardProps) {
           </motion.ul>
         ) : (
           <>
-            <motion.img
+            <motion.div
               initial={{
                 y: -100,
                 opacity: 0,
@@ -71,10 +72,15 @@ export default function ExperienceCard({ data }: ExperienceCardProps) {
               transition={{ duration: 1 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="w-32 h-32 rounded-full xl:w-[150px] xl:h-[150px] object-contain object-center"
-              src={data.companyLogo}
-              alt="company image"
-            />
+              className="relative w-32 h-32 xl:w-[150px] xl:h-[150px] object-center"
+            >
+              <Image
+                src={data.companyLogo}
+                className="rounded-full"
+                fill
+                alt="company image"
+              />
+            </motion.div>
 
             <div className="flex flex-col justify-evenly items-center px-0 md:px-10 space-y-3">
               <h4 className="text-4xl font-light text-center">{data?.role}</h4>

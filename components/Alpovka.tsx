@@ -27,7 +27,6 @@ export default function Alpovka({}: Props) {
           width={128}
           height={128}
           priority
-          quality={100}
           className="mt-10"
         />
       </div>
