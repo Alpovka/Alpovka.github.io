@@ -18,9 +18,9 @@ const ContactMe = (props: Props) => {
   } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     const ebody =
-      "Hello! My name is: " + data.name + "%0D%0A%0D%0A" + data.message;
+      "Hello! My name is " + data.name + "%0D%0A%0D%0A" + data.message;
     window.location.href =
-      "mailto:myemail@mycompany.com?subject=testemail&body=" + ebody;
+      "mailto:karavelx@gmail.com?subject=" + data.subject + "l&body=" + ebody;
   };
 
   return (
