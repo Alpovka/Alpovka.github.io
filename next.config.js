@@ -5,7 +5,9 @@ const nextConfig = {
     domains: ["imgur.com", "i.imgur.com"],
     loader: "akamai",
     path: "",
-  }
+  },
+  basePath: "/Alpovka.github.io",
+  assetPrefix: "/Alpovka.github.io",
 }
 
 module.exports = nextConfig
