@@ -44,6 +44,7 @@ function Project({ project }: ProjectProps) {
         >
           <Image
             src={project.imageUrl}
+            priority
             alt="Project Img"
             width={300}
             height={400}
