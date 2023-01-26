@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "export": "next export",
-    "lint": "next lint"
+    "dev": "yarn dev",
+    "build": "yarn build",
+    "start": "yarn start",
+    "export": "yarn export",
+    "lint": "yarn lint"
   },
   "dependencies": {
     "@heroicons/react": "^2.0.13",
