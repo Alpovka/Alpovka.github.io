@@ -44,7 +44,7 @@ export default function About({}: Props) {
         </h4>
         <p className="text-base">
           {
-            "👋🏻 Hi folks, My name is Alperen KARAVELIOGLU. A.K.A Alpovka. I am a self-taught software developer with a degree in electrical engineering. I'm developing applications for mobile and web environments. I love to turn ideas into visuality and will be happy to help you with your ideas as well."
+            "👋🏻 Hi folks, My name is Alperen KARAVELIOGLU A.K.A Alpovka. I am a self-taught software developer with a degree in electrical engineering. I'm developing applications for mobile and web environments. I love to turn ideas into visuality and will be happy to help you with your ideas as well."
           }
         </p>
       </div>
