@@ -31,7 +31,9 @@ const ContactMe = (props: Props) => {
             What are you waiting for?{" "}
           </h4>
           <h4 className="text-4xl font-semibold text-center">
-            <span className="decoration-orange-300 underline">Let's Talk!</span>
+            <span className="decoration-orange-300 underline">
+              {"Let's Talk!"}
+            </span>
           </h4>
         </div>
         <div className="space-y-5 sm:space-y-10">
