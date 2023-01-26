@@ -20,7 +20,7 @@ function Project({ project }: ProjectProps) {
     project.techs.includes(skill.name)
   );
 
-  const blockCondition = project.id === "5";
+  const blockCondition = project.id === "2";
 
   return (
     <div className="w-screen flex-shrink-0 snap-center flex flex-col space-y-6 md:space-y-10 items-center justify-center h-screen mt-12 px-4">
@@ -60,7 +60,7 @@ function Project({ project }: ProjectProps) {
         {usedTechs?.map((tech, key) => (
           <motion.div
             key={key}
-            className="relative flex items w-6 h-6 xl:w-12 xl:h-12 sm:w-8 sm:h-8 "
+            className="relative flex items w-6 xl:w-12 sm:w-8  "
           >
             <Image
               alt="tech img"
