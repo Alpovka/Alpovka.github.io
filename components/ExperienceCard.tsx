@@ -37,7 +37,7 @@ export default function ExperienceCard({ data }: ExperienceCardProps) {
   return (
     <motion.div
       layout="size"
-      className="flex flex-row justify-center items-center w-full snap-center bg-[rgb(36,36,36)] min-h-full p-10 hover:opacity-100 opacity-40 transition-opacity duration-200 "
+      className="flex flex-row justify-center items-center w-full snap-center bg-[rgb(36,36,36)] min-h-full p-10 pt-0 hover:opacity-100 opacity-40 transition-opacity duration-200 "
     >
       <motion.article
         layout="position"
