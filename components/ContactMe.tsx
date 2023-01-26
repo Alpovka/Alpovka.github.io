@@ -48,7 +48,7 @@ const ContactMe = (props: Props) => {
 
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="flex flex-col space-y-4 pb-10 pr-5 sm:pr-0 scale-[70%] sm:scale-100"
+            className="flex flex-col space-y-4 pb-10 pr-5 sm:pr-0 scale-[67.5%] sm:scale-100"
           >
             <div className="flex space-x-2">
               <input
