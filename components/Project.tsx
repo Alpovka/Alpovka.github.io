@@ -27,7 +27,7 @@ function Project({ project }: ProjectProps) {
       {project.imageUrl ? (
         <motion.div
           initial={{
-            y: -300,
+            y: -200,
             opacity: 1,
           }}
           transition={{
