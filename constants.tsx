@@ -139,7 +139,7 @@ const PROJECTS = [
     name: "EasyQuant",
     imageUrl: "https://imgur.com/YwEcRX1.png",
     description:
-      "A platform where beginner investors can quickly start investing. Released on Google Play & App",
+      "A platform where beginner investors can quickly start investing. Released on Google Play & App Store",
     techs: [
       "React Native",
       "React",
