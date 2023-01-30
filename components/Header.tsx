@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { AiFillGithub } from "react-icons/ai";
-import { FaLinkedinIn } from "react-icons/fa";
+import { FaLinkedinIn, FaRegHandshake } from "react-icons/fa";
 import { MdOutlineMailOutline } from "react-icons/md";
 import Link from "next/link";
 
@@ -24,7 +24,7 @@ export default function Header({}: Props) {
         transition={{
           duration: 1.5,
         }}
-        className="flex flex-row items-center space-x-4"
+        className="flex flex-row items-center space-x-4 mb-12"
       >
         <Link href="https://github.com/Alpovka" className="cursor-pointer">
           <AiFillGithub
@@ -42,29 +42,54 @@ export default function Header({}: Props) {
           />
         </Link>
       </motion.div>
-      <Link href="#contact-me" className="cursor-pointer">
-        <motion.div
-          initial={{
-            x: 300,
-            opacity: 0,
-            scale: 0.5,
-          }}
-          animate={{
-            x: 0,
-            opacity: 1,
-            scale: 1,
-          }}
-          transition={{
-            duration: 1.5,
-          }}
-          className="flex flex-row items-center space-x-4 text-gray-300 cursor-pointer"
-        >
-          <MdOutlineMailOutline opacity={0.5} className="w-[28px] h-[28px]" />
-          <p className="uppercase hidden md:inline-flex text-sm text-gray-400">
-            Get In Touch
-          </p>
-        </motion.div>
-      </Link>
+      <div className="flex flex-col items-end space-y-5">
+        <Link href="/Offers" className="cursor-pointer">
+          <motion.div
+            initial={{
+              x: 300,
+              opacity: 0,
+              scale: 0.5,
+            }}
+            animate={{
+              x: 0,
+              opacity: 1,
+              scale: 1,
+            }}
+            transition={{
+              duration: 1.5,
+            }}
+            className="flex flex-row items-center justify-center text-gray-300 space-x-4 cursor-pointer rounded-md "
+          >
+            <FaRegHandshake className="w-[28px] h-[28px] opacity-50" />
+            <p className="uppercase hidden md:inline-flex text-sm text-gray-400">
+              my job platform
+            </p>
+          </motion.div>
+        </Link>
+        <Link href="#contact-me" className="cursor-pointer">
+          <motion.div
+            initial={{
+              x: 300,
+              opacity: 0,
+              scale: 0.5,
+            }}
+            animate={{
+              x: 0,
+              opacity: 1,
+              scale: 1,
+            }}
+            transition={{
+              duration: 1.5,
+            }}
+            className="flex flex-row items-center space-x-4 text-gray-300 cursor-pointer"
+          >
+            <MdOutlineMailOutline opacity={0.5} className="w-[28px] h-[28px]" />
+            <p className="uppercase hidden md:inline-flex text-sm text-gray-400">
+              Get In Touch
+            </p>
+          </motion.div>
+        </Link>
+      </div>
     </header>
   );
 }
