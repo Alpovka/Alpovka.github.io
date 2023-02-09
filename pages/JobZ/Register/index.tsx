@@ -1,17 +1,41 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
+import { register, reset } from "@/redux/authUserSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 type Props = {};
 
 const Register = (props: Props) => {
+  const [error, setError] = useState<null | string>(null);
   const [formData, setFormData] = useState({
     name: "",
+    organization: "",
     email: "",
     password: "",
     passwordAgain: "",
   });
 
-  const { name, email, password, passwordAgain } = formData;
+  const { name, email, password, passwordAgain, organization } = formData;
+
+  const router = useRouter();
+  const dispatch = useDispatch();
+
+  const { user, isLoading, isError, isSuccess, message } = useSelector(
+    (state) => state.authUser
+  );
+
+  useEffect(() => {
+    if (isError) {
+      setError(message);
+    }
+
+    if (isSuccess && user) {
+      router.push("/Offers/Dashboard");
+    }
+
+    dispatch(reset());
+  }, [user, isError, isSuccess, message, router, dispatch]);
 
   const onChange = (e: { target: { name: any; value: any } }) => {
     setFormData((prev) => ({
@@ -22,12 +46,30 @@ const Register = (props: Props) => {
 
   const onSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
+
+    if (password !== passwordAgain) {
+      setError("Passwords do not match");
+    } else {
+      const userData = {
+        name,
+        organization,
+        email,
+        password,
+      };
+
+      dispatch(register(userData));
+    }
   };
+
+  if (isLoading) {
+    return <h1>Loading ...</h1>;
+  }
 
   return (
     <div>
       <Link href={"/Offers"}>
-        <p>Alpovka JobZ</p>
+        <p>Alpovka offerZ</p>
+        <p className="text-red-600">{error}</p>
       </Link>
 
       <section>
@@ -38,6 +80,14 @@ const Register = (props: Props) => {
             name="name"
             value={name}
             placeholder="Your name"
+            onChange={onChange}
+          />
+          <input
+            type="text"
+            id="organization"
+            name="organization"
+            value={organization}
+            placeholder="Organization name (Optional)"
             onChange={onChange}
           />
           <input

@@ -1,9 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { createWrapper } from "next-redux-wrapper";
+import authUserReducer from "./authUserSlice"
+import offerReducer from "./offerSlice"
 
 export const store = () =>
   configureStore({
-    reducer: {},
+    reducer: {
+      authUser: authUserReducer,
+      offers: offerReducer,
+    },
 });
 
 export type AppStore = ReturnType<typeof store>;

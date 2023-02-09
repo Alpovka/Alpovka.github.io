@@ -32,7 +32,6 @@ export default function About({}: Props) {
         <Image
           src={aboutImg}
           alt="About image"
-          priority
           className="w-40 h-40 rounded-full object-contain bg-slate-300 sm:w-full sm:h-full  sm:rounded-lg"
         />
       </motion.div>

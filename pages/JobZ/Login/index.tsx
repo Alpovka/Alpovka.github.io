@@ -1,15 +1,38 @@
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
+import { login, reset } from "@/redux/authUserSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 type Props = {};
 
 const Login = (props: Props) => {
+  const [error, setError] = useState<null | string>(null);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
 
   const { email, password } = formData;
+
+  const router = useRouter();
+  const dispatch = useDispatch();
+
+  const { user, isLoading, isError, isSuccess, message } = useSelector(
+    (state) => state.authUser
+  );
+
+  useEffect(() => {
+    if (isError) {
+      setError(message);
+    }
+
+    if (isSuccess && user) {
+      router.push("/JobZ/Dashboard");
+    }
+
+    dispatch(reset());
+  }, [user, isError, isSuccess, message, router, dispatch]);
 
   const onChange = (e: { target: { name: any; value: any } }) => {
     setFormData((prev) => ({
@@ -20,12 +43,24 @@ const Login = (props: Props) => {
 
   const onSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
+
+    const userData = {
+      email,
+      password,
+    };
+
+    dispatch(login(userData));
   };
+
+  if (isLoading) {
+    return <h1>Loading ...</h1>;
+  }
 
   return (
     <div>
       <Link href={"/Offers"}>
-        <p>Alpovka JobZ</p>
+        <p>Alpovka offerZ</p>
+        <p className="text-red-500">{error}</p>
       </Link>
 
       <section>

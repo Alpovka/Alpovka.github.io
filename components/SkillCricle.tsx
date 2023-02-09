@@ -45,7 +45,6 @@ const SkillCricle = ({ skill, directionLeft }: Props) => {
           alt="tech img"
           src={skill.techImgUrl}
           fill
-          priority
           className="object-contain p-3"
         />
       </div>
