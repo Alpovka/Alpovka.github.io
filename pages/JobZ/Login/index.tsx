@@ -3,6 +3,12 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { login, reset } from "@/redux/authUserSlice";
 import { useDispatch, useSelector } from "react-redux";
+import {
+  ArrowLongLeftIcon,
+  AtSymbolIcon,
+  LockClosedIcon,
+} from "@heroicons/react/24/solid";
+import Head from "next/head";
 
 type Props = {};
 
@@ -44,6 +50,16 @@ const Login = (props: Props) => {
   const onSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
+    const passValidateRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,15}$/;
+
+    if (!passValidateRegex.test(password)) {
+      setError(
+        "Not valid password! Password must contain, 8-15 characters, including at least 1 number and 1 symbol."
+      );
+      return;
+    }
+
     const userData = {
       email,
       password,
@@ -57,36 +73,83 @@ const Login = (props: Props) => {
   }
 
   return (
-    <div>
-      <Link href={"/Offers"}>
-        <p>Alpovka offerZ</p>
-        <p className="text-red-500">{error}</p>
+    <div className="flex flex-col bg-jobzBlack h-screen justify-evenly items-center">
+      <Head>
+        <title>Alpovka JobZ/Login</title>
+        <meta name="description" content="Alpovka JobZ Entrance" />
+        <link rel="icon" type="image/png" href="../images/favicon.png" />
+      </Head>
+      <Link
+        href={"/JobZ"}
+        className="absolute top-5 left-5 cta flex items-center justify-center self-start scale-[75%]"
+      >
+        <ArrowLongLeftIcon
+          id="arrow-horizontal"
+          className="text-jobzWhite"
+          width={24}
+          height={24}
+          style={{
+            marginBottom: 6,
+          }}
+        />
+        <span className="hover-underline-animation">Back</span>
       </Link>
 
       <section>
-        <form onSubmit={onSubmit}>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={email}
-            placeholder="Your email"
-            onChange={onChange}
-          />
-          <input
-            type="password"
-            className="w-full"
-            id="password"
-            name="password"
-            value={password}
-            placeholder="8-15 characters, including at least 3 number and 1 symbol."
-            onChange={onChange}
-          />
-          <button className="bg-orange-300 py-5 px-10 rounded-md text-black font-bold text-lg hover:bg-[#F7AB0A] transition duration-200 ease-in-out">
-            SignIn
+        <form
+          onSubmit={onSubmit}
+          className={`form w-[95vw] text-xs sm:w-[550px] sm:text-base font-titillium text-jobzWhite ${
+            error && "hover:border-jobzOrange"
+          }`}
+        >
+          <p id="heading">Login</p>
+          <div className="field">
+            <AtSymbolIcon className="input-icon" />
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={email}
+              placeholder="Email"
+              onChange={onChange}
+              className="input-field"
+              autoComplete="off"
+              required
+            />
+          </div>
+          <div className="field">
+            <LockClosedIcon className="input-icon" />
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={password}
+              placeholder="8-15 characters, including at least 1 number and 1 symbol."
+              onChange={onChange}
+              className="input-field"
+              autoComplete="off"
+              required
+            />
+          </div>
+          {error && <p className="text-jobzOrange text-center mt-4">{error}</p>}
+          <button className="button1 mt-8">Submit</button>
+          <button disabled className="button2 hover:text-jobzOrange mt-4">
+            Forgot Password
           </button>
+          <div className="flex items-center justify-around mb-8 mt-8">
+            <p className="text-cente">Don't you have an account ?</p>
+            <button
+              className="button2 text-center"
+              onClick={() => router.push("/JobZ/Register")}
+            >
+              Sign Up
+            </button>
+          </div>
         </form>
       </section>
+      <footer className="font-titillium text-jobzWhite text-xs">
+        <p className="text-center">Alperen KARAVELIOGLU &copy; 2023</p>
+      </footer>
     </div>
   );
 };

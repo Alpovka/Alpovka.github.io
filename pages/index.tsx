@@ -40,7 +40,7 @@ export default function Home() {
 
       <footer className="flex w-full -mt-5 justify-center items-center">
         <p className="text-center text-xs text-black tracking-wide font-mono">
-          Alperen KARAVELIOGLU © 2023
+          Alperen KARAVELIOGLU &copy; 2023
         </p>
       </footer>
     </div>

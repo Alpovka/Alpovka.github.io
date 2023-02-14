@@ -9,7 +9,7 @@ module.exports = {
       colors: {
         jobzWhite: "#D1CFD2",
         jobzGreen: "#15C8BE",
-        jobzDarkBlue: "#1325F0",
+        jobzDarkBlue: "#261A9D",
         jobzOrange: "#ED625E",
         jobzBlue: "#1325F0",
         jobzDarkPurple: "#290C67",

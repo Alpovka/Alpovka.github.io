@@ -51,4 +51,52 @@
         @apply origin-bottom-left scale-x-100;
       }
 
+    .card {
+        @apply w-[200px] h-[600px] md:w-[300px] md:h-[900px] bg-jobzLightPurple will-change-transform transition-transform duration-[0.5s] space-y-8 pb-36 md:space-y-14 md:pb-[180%];
+        transform-style: preserve-3d;
+     }
+     .card:hover {
+        transform: translateZ(10px) rotateX(20deg) rotateY(20deg);
+    }
+    
+    .card_title {
+      @apply  text-white -translate-y-2/4  transition-transform duration-[0.5s] w-8 h-8 md:w-12 md:h-12 font-titillium shadow-xl rounded-md;
+     }
+
+    .card:hover .card_title {
+        transform: translateZ(50px);
+    }
+
+    /* Form Classes */
+
+    .form {
+      @apply flex flex-col gap-2.5 bg-jobzBlack border transition-[0.4s] rounded-3xl duration-[ease-in-out] pb-[0.4em] px-[2em] border-solid border-jobzGrey hover:border hover:border-solid hover:border-jobzWhite hover:scale-105 shadow-jobzDarkPurple shadow-md hover:shadow-none;
+    }
+    #heading {
+      @apply text-center text-white text-[1.2em] m-[2em];
+    }
+    .field {
+      @apply flex items-center justify-center gap-[0.5em] text-[white] bg-neutral-900 shadow-[inset_2px_5px_10px_rgb(5,5,5)] p-[0.6em] rounded-[25px] border-[none];
+      outline: none;
+    }
+    .input-icon {
+      @apply h-[1.3em] w-[1.3em] fill-[white];
+    }
+    .input-field {
+      @apply w-full text-[#d3d3d3] border-[none];
+      background: none;
+      outline: none;
+    }
+    .form .btn {
+      @apply flex justify-center flex-row mt-[2.5em];
+    }
+    .button1 {
+      @apply transition-[0.4s] duration-[ease-in-out] bg-[#252525] text-[white] mr-[0.5em] px-[1.1em] p-[0.5em] rounded-[5px] border-[none] hover:bg-jobzLightPurple;
+      outline: none;
+    }
+    .button2 {
+      @apply transition-[0.4s] duration-[ease-in-out] text-[white] px-[2.3em] p-[0.5em] rounded-[5px] border-[none] hover:text-jobzLightPurple;
+      outline: none;
+    }
+    
 }
