@@ -27,10 +27,16 @@ const login = async (userData: any) => {
 
 const logout = async () => localStorage.removeItem("user")
 
+export const forgotPassword = async (formData: any) => {
+    const res = await axios.post(API_URL + "forgot-password", formData)
+
+    return res.data
+}
+
 const authUserService = {
     register,
     login,
-    logout
+    logout,
 }
 
 export default authUserService

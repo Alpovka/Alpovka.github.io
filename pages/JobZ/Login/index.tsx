@@ -55,7 +55,7 @@ const Login = (props: Props) => {
 
     if (!passValidateRegex.test(password)) {
       setError(
-        "Not valid password! Password must contain, 8-15 characters, including at least 1 number and 1 symbol."
+        "Not valid password! Password must contain, 6-20 characters, including at least 1 upper and lowercase letter, 1 number and 1 symbol."
       );
       return;
     }
@@ -67,6 +67,8 @@ const Login = (props: Props) => {
 
     dispatch(login(userData));
   };
+
+  const handleForgotPasswordClick = () => router.push("/JobZ/forgot-password");
 
   if (isLoading) {
     return <h1>Loading ...</h1>;
@@ -133,7 +135,10 @@ const Login = (props: Props) => {
           </div>
           {error && <p className="text-jobzOrange text-center mt-4">{error}</p>}
           <button className="button1 mt-8">Submit</button>
-          <button disabled className="button2 hover:text-jobzOrange mt-4">
+          <button
+            className="button2 hover:text-jobzOrange mt-4"
+            onClick={handleForgotPasswordClick}
+          >
             Forgot Password
           </button>
           <div className="flex items-center justify-around mb-8 mt-8">

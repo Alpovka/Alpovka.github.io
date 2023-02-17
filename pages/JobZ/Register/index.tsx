@@ -55,10 +55,10 @@ const Register = (props: Props) => {
   const onSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
-    const passValidateRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,15}$/ 
+    const passValidateRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,20}$/ 
 
     if(!passValidateRegex.test(password) || !passValidateRegex.test(passwordAgain)){
-      setError("Not valid password! Password must contain, 8-15 characters, including at least 1 number and 1 symbol.")
+      setError("Not valid password! Password must contain, 6-20 characters, including at least 1 upper and lowercase letter, 1 number and 1 symbol.")
       return
     }
 
@@ -109,7 +109,9 @@ const Register = (props: Props) => {
       <section>
         <form
           onSubmit={onSubmit}
-          className="form w-[95vw] text-xs sm:w-[550px] sm:text-base font-titillium text-jobzWhite"
+          className={`form w-[95vw] text-xs sm:w-[550px] sm:text-base font-titillium text-jobzWhite ${
+            error && "hover:border-jobzOrange"
+          }`}
         >
           <p id="heading">Sign Up</p>
           <div className="field">
@@ -161,7 +163,7 @@ const Register = (props: Props) => {
               id="password"
               name="password"
               value={password}
-              placeholder="8-15 characters, including at least 1 number and 1 symbol."
+              placeholder="6-20 characters, including at least 1 upper and lowercase letter, 1 number and 1 symbol."
               autoComplete="off"
               onChange={onChange}
               required
