@@ -41,6 +41,7 @@ const Login = (props: Props) => {
   }, [user, isError, isSuccess, message, router, dispatch]);
 
   const onChange = (e: { target: { name: any; value: any } }) => {
+    setError("");
     setFormData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
@@ -69,10 +70,6 @@ const Login = (props: Props) => {
   };
 
   const handleForgotPasswordClick = () => router.push("/JobZ/forgot-password");
-
-  if (isLoading) {
-    return <h1>Loading ...</h1>;
-  }
 
   return (
     <div className="flex flex-col bg-jobzBlack h-screen justify-evenly items-center">
@@ -134,7 +131,9 @@ const Login = (props: Props) => {
             />
           </div>
           {error && <p className="text-jobzOrange text-center mt-4">{error}</p>}
-          <button className="button1 mt-8">Submit</button>
+          <button className="button1 mt-8">
+            {!isLoading ? "Submit" : "Logging..."}
+          </button>
           <button
             className="button2 hover:text-jobzOrange mt-4"
             onClick={handleForgotPasswordClick}

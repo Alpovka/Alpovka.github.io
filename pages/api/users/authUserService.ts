@@ -4,13 +4,6 @@ const API_URL = "http://localhost:8000/api/users/"
 const register = async (userData: any) => {
     const res = await axios.post(API_URL, userData)
 
-    if(res.data && JSON.stringify(res.data) !== '{}'){
-        console.log("USER CREATED")
-        localStorage.setItem("user", JSON.stringify(res.data))
-    }else{
-        console.log("USER IS NOT CREATED")
-        localStorage.setItem("user", "")
-    }
 
     return res.data
 }

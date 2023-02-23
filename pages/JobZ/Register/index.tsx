@@ -16,6 +16,7 @@ type Props = {};
 
 const Register = (props: Props) => {
   const [error, setError] = useState<null | string>(null);
+  const [success, setSuccess] = useState(false)
   const [formData, setFormData] = useState({
     name: "",
     organization: "",
@@ -38,19 +39,25 @@ const Register = (props: Props) => {
       setError(message);
     }
 
-    if (isSuccess && user) {
-      router.push("/Offers/Dashboard");
+    if(isSuccess){
+      setSuccess(true)
     }
 
     dispatch(reset());
   }, [user, isError, isSuccess, message, router, dispatch]);
 
   const onChange = (e: { target: { name: any; value: any } }) => {
+    setError("");
     setFormData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
     }));
   };
+
+  const handleLogin = () => {
+    setError("")
+    router.push("/JobZ/Login")
+  }
 
   const onSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
@@ -75,10 +82,6 @@ const Register = (props: Props) => {
       dispatch(register(userData));
     }
   };
-
-  if (isLoading) {
-    return <h1>Loading ...</h1>;
-  }
 
   return (
     <div className="flex flex-col bg-jobzBlack h-screen justify-evenly items-center">
@@ -111,7 +114,7 @@ const Register = (props: Props) => {
           onSubmit={onSubmit}
           className={`form w-[95vw] text-xs sm:w-[550px] sm:text-base font-titillium text-jobzWhite ${
             error && "hover:border-jobzOrange"
-          }`}
+          } ${success && "hover:border-jobzGreen"}`}
         >
           <p id="heading">Sign Up</p>
           <div className="field">
@@ -183,13 +186,19 @@ const Register = (props: Props) => {
               required
             />
           </div>
-         {error &&  <p className="text-jobzOrange text-center mt-4">{error}</p>}
-          <button className="button1 mt-4">Create your account</button>
+          {error && <p className="text-jobzOrange text-center mt-4">{error}</p>}
+          {success ? (
+            <p className="text-jobzGreen text-center mt-4">
+              The link to confirm your account has been sent to your email
+            </p>
+          ) : <button className="button1 mt-8">
+            {isLoading ? "Loading..." : "Create your account"}
+          </button>}
           <div className="flex items-center justify-around my-8">
             <p className="text-center">I have an account</p><span>-></span>
             <button
               className="button2 text-center"
-              onClick={() => router.push("/JobZ/Login")}
+              onClick={handleLogin}
             >
               Login
             </button>
