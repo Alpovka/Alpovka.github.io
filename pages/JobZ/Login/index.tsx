@@ -34,7 +34,7 @@ const Login = (props: Props) => {
     }
 
     if (isSuccess && user) {
-      router.push("/JobZ/Dashboard");
+      router.replace("/JobZ/Dashboard");
     }
 
     dispatch(reset());

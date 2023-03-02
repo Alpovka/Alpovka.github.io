@@ -186,6 +186,10 @@ const Register = (props: Props) => {
               required
             />
           </div>
+          <div className="field space-x-4 px-4">
+            <input type="checkbox" name="use-condition" id="use-condition"    autoComplete="off" required/>
+            <p>I accept the storage of all my information that I have specified in this form and on the platform.</p>
+          </div>
           {error && <p className="text-jobzOrange text-center mt-4">{error}</p>}
           {success ? (
             <p className="text-jobzGreen text-center mt-4">

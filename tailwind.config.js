@@ -16,6 +16,7 @@ module.exports = {
         jobzLightPurple: "#7758E7",
         jobzGrey: "#435555",
         jobzBlack: "#08090A",
+        jobzYellow: "#A2FC52",
       }
     },
     fontFamily: {
