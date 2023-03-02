@@ -26,6 +26,18 @@ const getOffers = async (token: any) => {
     return res.data
 }
 
+const updateOffer = async (offerData: any, token: any) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+
+    const res = await axios.patch(API_URL, offerData, config)
+
+    return res.data
+}
+
 const removeOffer = async (offerId: string,token: any) => {
     const config = {
         headers: {
@@ -43,6 +55,7 @@ const offerService = {
     createOffer,
     getOffers,
     removeOffer,
+    updateOffer,
 }
 
 export default offerService

@@ -42,6 +42,17 @@ export const removeOffer = createAsyncThunk("offers/removeOffer", async (id, thu
     }
 })
 
+export const updateOffer = createAsyncThunk("offers/updateOffer", async (offerData, thunkAPI) => {
+    try {
+        const token = thunkAPI.getState().authUser.user.token
+        return await offerService.updateOffer(offerData, token)
+    } catch (error: any) {
+        const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
+
+        return thunkAPI.rejectWithValue(message)
+    }
+})
+
 export const offerSlice = createSlice({
     name: "offers",
     initialState,
@@ -51,6 +62,8 @@ export const offerSlice = createSlice({
     extraReducers: (builder) => {
         builder.addCase(createOffer.pending, (state) => {
             state.isLoading = true
+            state.isSuccess = false
+            state.isError = false
         })
         .addCase(createOffer.fulfilled, (state, action) => {
             state.isLoading = false
@@ -62,8 +75,11 @@ export const offerSlice = createSlice({
             state.isSuccess = false
             state.isError = true
             state.message = action.payload
-        }).addCase(getOffers.pending, (state) => {
+        })
+        .addCase(getOffers.pending, (state) => {
             state.isLoading = true
+            state.isSuccess = false
+            state.isError = false
         })
         .addCase(getOffers.fulfilled, (state, action) => {
             state.isLoading = false
@@ -84,6 +100,18 @@ export const offerSlice = createSlice({
             state.offers.filter((offer) => offer._id !== action.payload.id)
         })
         .addCase(removeOffer.rejected, (state, action) => {
+            state.isLoading = false
+            state.isSuccess = false
+            state.isError = true
+            state.message = action.payload
+        })
+        .addCase(updateOffer.fulfilled, (state, action) => {
+            state.isLoading = false
+            state.isSuccess = true
+            state.isError = false
+            state.offers = action.payload
+        })
+        .addCase(updateOffer.rejected, (state, action) => {
             state.isLoading = false
             state.isSuccess = false
             state.isError = true

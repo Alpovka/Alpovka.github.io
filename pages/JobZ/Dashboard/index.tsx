@@ -17,7 +17,7 @@ import Link from "next/link";
 type Props = {};
 
 function Dashboard({}: Props) {
-  const [toggle, setToggle] = useState(false);
+  const [toggleForm, setToggleForm] = useState(false);
   const [error, setError] = useState();
   const router = useRouter();
   const dispatch = useDispatch();
@@ -32,8 +32,24 @@ function Dashboard({}: Props) {
   };
 
   const onNewOfferButton = () => {
-    setToggle((prev) => !prev);
+    setToggleForm((prev) => !prev);
   };
+
+  const extractOffersConditionCount = () => {
+    const seenOffersCount = offers?.filter(
+      (offer: any) => offer.didSeen
+    ).length;
+    const acceptedOffersCount = offers?.filter(
+      (offer: any) => offer.didAccepted
+    ).length;
+    const rejectedOffersCount = offers?.filter(
+      (offer: any) => offer.didRejected
+    ).length;
+    return { seenOffersCount, acceptedOffersCount, rejectedOffersCount };
+  };
+
+  const { seenOffersCount, acceptedOffersCount, rejectedOffersCount } =
+    extractOffersConditionCount();
 
   useEffect(() => {
     if (!user) {
@@ -49,7 +65,7 @@ function Dashboard({}: Props) {
     return () => {
       dispatch(resetOffers());
     };
-  }, [user, router, isError, message, dispatch]);
+  }, [user, router, isError, message]);
 
   return (
     <div
@@ -85,7 +101,7 @@ function Dashboard({}: Props) {
           </div>
           <div className="flex flex-col items-center justify-center space-y-4">
             <figure className="relative w-32 h-32 rounded-full">
-              <Image alt="User profile picture" src={tempImage} fill />
+              <Image alt="User profile picture" src={tempImage} fill priority />
             </figure>
             <header className="flex flex-col items-center md:items-start">
               <h1 className="text-xl">{user?.name}</h1>
@@ -98,7 +114,7 @@ function Dashboard({}: Props) {
                 <button className="flex flex-col items-center space-y-1">
                   <h1 className="font-bold">Seen Offers</h1>
                   <p className="font-titillium opacity-60 rounded-full border w-8 border-opacity-70 border-jobzLightPurple shadow-[inset_0_0_30px_-10px] shadow-jobzDarkPurple">
-                    2
+                    {seenOffersCount}
                   </p>
                 </button>
               </li>
@@ -106,7 +122,7 @@ function Dashboard({}: Props) {
                 <button className="flex flex-col items-center space-y-1">
                   <h1 className="font-bold">Accepted Offers</h1>
                   <p className="font-titillium opacity-60 rounded-full border w-8 border-opacity-70 border-jobzLightPurple shadow-[inset_0_0_30px_-10px] shadow-jobzDarkPurple">
-                    5
+                    {acceptedOffersCount}
                   </p>
                 </button>
               </li>
@@ -114,7 +130,7 @@ function Dashboard({}: Props) {
                 <button className="flex flex-col items-center space-y-1">
                   <h1 className="font-bold">Rejected Offers</h1>
                   <p className="font-titillium opacity-60 rounded-full border w-8 border-opacity-70 border-jobzLightPurple shadow-[inset_0_0_30px_-10px] shadow-jobzDarkPurple">
-                    3
+                    {rejectedOffersCount}
                   </p>
                 </button>
               </li>
@@ -122,11 +138,11 @@ function Dashboard({}: Props) {
           </div>
           <button
             className={`flex justify-evenly items-center border border-jobzWhite px-6 py-3 rounded-3xl self-center ${
-              !toggle ? "hover:border-white" : "hover:border-jobzOrange"
+              !toggleForm ? "hover:border-white" : "hover:border-jobzOrange"
             }  transition-colors`}
             onClick={onNewOfferButton}
           >
-            {toggle ? (
+            {toggleForm ? (
               <XMarkIcon width={24} />
             ) : (
               <>
@@ -140,7 +156,7 @@ function Dashboard({}: Props) {
               </>
             )}
           </button>
-          {toggle ? <OfferForm /> : null}
+          {toggleForm ? <OfferForm /> : null}
           <div className="flex flex-col items-center space-y-8 w-full p-8">
             {isLoading ? (
               <h1>Offers are loading ...</h1>
