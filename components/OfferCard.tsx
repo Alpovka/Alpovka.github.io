@@ -57,6 +57,7 @@ const OfferCard = ({ offer }: OfferCardProp) => {
 
   const onDelete = () => {
     dispatch(removeOffer(offer._id));
+    router.back(); // This stupid function allows right now to delete card and update the DOM, could not find better solution for this
   };
 
   const onClickEdit = () => setToggleEditMode((prev) => !prev);
@@ -78,6 +79,7 @@ const OfferCard = ({ offer }: OfferCardProp) => {
 
     setToggleEditMode(false);
     dispatch(updateOffer(offerData));
+    router.back(); // This stupid function allows right now to delete card and update the DOM, could not find better solution for this
   };
 
   return (

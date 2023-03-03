@@ -65,7 +65,7 @@ function Dashboard({}: Props) {
     return () => {
       dispatch(resetOffers());
     };
-  }, [user, router, isError, message]);
+  }, [user, router, isError, message, dispatch]);
 
   return (
     <div

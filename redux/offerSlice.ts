@@ -97,9 +97,9 @@ export const offerSlice = createSlice({
             state.isError = false
         })
         .addCase(removeOffer.fulfilled, (state, action) => {
-            state.offers.filter((offer) => offer._id !== action.payload._id)
-            state.isSuccess = true
             state.isLoading = false
+            state.isSuccess = true
+            state.offers.filter((offer) => offer._id !== action.payload.id)
         })
         .addCase(removeOffer.rejected, (state, action) => {
             state.isLoading = false
@@ -111,7 +111,7 @@ export const offerSlice = createSlice({
             state.isLoading = false
             state.isSuccess = true
             state.isError = false
-            state.offers = action.payload
+            state.offers.filter((offer) => offer._id !== action.payload.id).push(action.payload)
         })
         .addCase(updateOffer.rejected, (state, action) => {
             state.isLoading = false
