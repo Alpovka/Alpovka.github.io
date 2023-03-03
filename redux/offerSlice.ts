@@ -93,11 +93,13 @@ export const offerSlice = createSlice({
             state.message = action.payload
         }).addCase(removeOffer.pending, (state) => {
             state.isLoading = true
+            state.isSuccess = false
+            state.isError = false
         })
         .addCase(removeOffer.fulfilled, (state, action) => {
-            state.isLoading = false
+            state.offers.filter((offer) => offer._id !== action.payload._id)
             state.isSuccess = true
-            state.offers.filter((offer) => offer._id !== action.payload.id)
+            state.isLoading = false
         })
         .addCase(removeOffer.rejected, (state, action) => {
             state.isLoading = false

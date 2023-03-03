@@ -52,7 +52,7 @@ const Login = (props: Props) => {
     e.preventDefault();
 
     const passValidateRegex =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,15}$/;
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,20}$/;
 
     if (!passValidateRegex.test(password)) {
       setError(
