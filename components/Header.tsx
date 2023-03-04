@@ -73,7 +73,8 @@
 
 import { motion } from "framer-motion";
 import { AiFillGithub } from "react-icons/ai";
-import { FaLinkedinIn, FaRegHandshake } from "react-icons/fa";
+import { FaLinkedinIn } from "react-icons/fa";
+import { TbBriefcase } from "react-icons/tb";
 import { MdOutlineMailOutline } from "react-icons/md";
 import Link from "next/link";
 
@@ -132,7 +133,7 @@ export default function Header({}: Props) {
           href="/JobZ"
           className="cursor-pointer flex items-center space-x-3"
         >
-          <FaRegHandshake className="w-[28px] h-[28px] opacity-50" />
+          <TbBriefcase className="w-[28px] h-[28px] opacity-50" />
           <p className="uppercase hidden md:inline-flex text-sm text-gray-400">
             my job platform
           </p>

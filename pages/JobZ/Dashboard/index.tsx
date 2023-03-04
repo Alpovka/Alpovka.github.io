@@ -13,6 +13,7 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/solid";
 import Link from "next/link";
+import { ImCheckmark, ImCross, ImEye } from "react-icons/im";
 
 type Props = {};
 
@@ -100,35 +101,59 @@ function Dashboard({}: Props) {
             </button>
           </div>
           <div className="flex flex-col items-center justify-center space-y-4">
-            <figure className="relative w-32 h-32 rounded-full">
+            <figure className="relative max-sm:w-24 max-sm:h-24  sm:w-32 sm:h-32 rounded-full">
               <Image alt="User profile picture" src={tempImage} fill priority />
             </figure>
             <header className="flex flex-col items-center md:items-start">
-              <h1 className="text-xl">{user?.name}</h1>
-              <h2 className="text-lg">EasyQuant</h2>
+              <h1 className="max-sm:text-lg sm:text-xl">{user?.name}</h1>
+              <h2 className="max-sm:text-base sm:text-lg">EasyQuant</h2>
             </header>
           </div>
           <div className="w-full my-12">
             <ul className="flex justify-evenly items-center text-sm">
               <li className="text-center px-[4vw]">
-                <button className="flex flex-col items-center space-y-1">
-                  <h1 className="font-bold">Seen Offers</h1>
+                <button className="flex flex-col items-center space-y-2">
+                  <ImEye
+                    size={16}
+                    className="text-jobzYellow opacity-50 max-sm:visible sm:hidden"
+                    data-te-toggle="tooltip"
+                    title="Seen"
+                  />
+                  <h1 className="font-bold max-sm:hidden sm:visible">
+                    Seen Offers
+                  </h1>
                   <p className="font-titillium opacity-60 rounded-full border w-8 border-opacity-70 border-jobzLightPurple shadow-[inset_0_0_30px_-10px] shadow-jobzDarkPurple">
                     {seenOffersCount}
                   </p>
                 </button>
               </li>
               <li className="text-center px-[4vw]">
-                <button className="flex flex-col items-center space-y-1">
-                  <h1 className="font-bold">Accepted Offers</h1>
+                <button className="flex flex-col items-center space-y-2">
+                  <ImCheckmark
+                    size={16}
+                    className="text-jobzGreen opacity-50 max-sm:visible sm:hidden"
+                    data-te-toggle="tooltip"
+                    title="Accepted"
+                  />
+                  <h1 className="font-bold max-sm:hidden sm:visible">
+                    Accepted Offers
+                  </h1>
                   <p className="font-titillium opacity-60 rounded-full border w-8 border-opacity-70 border-jobzLightPurple shadow-[inset_0_0_30px_-10px] shadow-jobzDarkPurple">
                     {acceptedOffersCount}
                   </p>
                 </button>
               </li>
               <li className="text-center px-[4vw]">
-                <button className="flex flex-col items-center space-y-1">
-                  <h1 className="font-bold">Rejected Offers</h1>
+                <button className="flex flex-col items-center space-y-2">
+                  <ImCross
+                    size={16}
+                    className="text-jobzOrange opacity-50 max-sm:visible sm:hidden"
+                    data-te-toggle="tooltip"
+                    title="Rejected"
+                  />
+                  <h1 className="font-bold max-sm:hidden sm:visible">
+                    Rejected Offers
+                  </h1>
                   <p className="font-titillium opacity-60 rounded-full border w-8 border-opacity-70 border-jobzLightPurple shadow-[inset_0_0_30px_-10px] shadow-jobzDarkPurple">
                     {rejectedOffersCount}
                   </p>
@@ -137,7 +162,7 @@ function Dashboard({}: Props) {
             </ul>
           </div>
           <button
-            className={`flex justify-evenly items-center border border-jobzWhite px-6 py-3 rounded-3xl self-center ${
+            className={`flex max-[390px]:scale-[80%] justify-evenly items-center border border-jobzWhite px-6 py-3 rounded-3xl self-center ${
               !toggleForm ? "hover:border-white" : "hover:border-jobzOrange"
             }  transition-colors`}
             onClick={onNewOfferButton}

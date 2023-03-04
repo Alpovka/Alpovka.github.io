@@ -37,7 +37,7 @@ const OfferForm = ({}: Props) => {
 
     const offerData = {
       title,
-      jobType,
+      jobType: jobType ? jobType : "Part-Time",
       isRemote,
       location,
       description,
@@ -54,7 +54,7 @@ const OfferForm = ({}: Props) => {
       <section className="max-sm:m-0 my-16">
         <form
           onSubmit={onSubmit}
-          className="max-[350px]:scale-[40%]  max-[450px]:scale-[60%] max-[350px]: max-sm:scale-[80%] space-y-4"
+          className="max-[350px]: max-sm:scale-[80%] space-y-4"
         >
           <div className="flex space-x-4 justify-evenly">
             <div className="flex flex-col space-y-2">
@@ -73,17 +73,20 @@ const OfferForm = ({}: Props) => {
             </div>
             <div className="flex flex-col space-y-2">
               <label htmlFor="jobType">Job Type</label>
-              <input
-                type="text"
+              <select
                 name="jobType"
                 id="jobType"
+                className="bg-slate-800 rounded-r-sm px-4 py-1 focus:outline-jobzLightPurple"
                 value={jobType}
+                defaultValue={"Part-Time"}
                 onChange={onChange}
-                className="bg-slate-800 rounded-sm px-4 py-1 focus:outline-jobzLightPurple"
-                placeholder="Part-Time"
-                autoComplete="off"
-                required
-              />
+              >
+                <option value="Part-Time">Part-Time</option>
+                <option value="Full-Time">Full-Time</option>
+                <option value="Contracted">Contracted</option>
+                <option value="Temporary">Temporary</option>
+                <option value="Other">Other</option>
+              </select>
             </div>
             <div className="flex flex-col items-center space-y-2">
               <label htmlFor="isRemote" className="w-32 text-center">
@@ -99,7 +102,7 @@ const OfferForm = ({}: Props) => {
               />
             </div>
           </div>
-          <div className="flex flex-col space-y-2 -translate-y-3">
+          <div className="flex flex-col space-y-2 -translate-y-3 ">
             <label htmlFor="description">
               Describe your job offer as you want
             </label>
@@ -111,7 +114,7 @@ const OfferForm = ({}: Props) => {
               rows={6}
               spellCheck={false}
               autoComplete="off"
-              className="bg-slate-800 max-h-32 rounded-sm px-4 py-1 resize-none focus:outline-jobzLightPurple"
+              className="bg-slate-800 max-h-32 rounded-sm px-4 py-1 resize-none focus:outline-jobzLightPurple overflow-y-scroll overflow-x-hidden scrollbar-thin  scrollbar-thumb-jobzLightPurple"
               placeholder="We want an awesome engineer who wants to be our team leader and passionate for coding stuff."
               required
             />
@@ -147,7 +150,7 @@ const OfferForm = ({}: Props) => {
                 <select
                   name="currency"
                   id="currency"
-                  className="bg-slate-800 rounded-r-sm ml-1 px-4 py-1"
+                  className="bg-slate-800 rounded-r-sm ml-1 px-4 py-1 focus:outline-jobzLightPurple"
                   value={currency}
                   defaultValue={"EUR"}
                   onChange={onChange}
