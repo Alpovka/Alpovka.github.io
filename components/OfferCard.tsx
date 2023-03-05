@@ -1,6 +1,5 @@
 import { useDispatch } from "react-redux";
 import { removeOffer, updateOffer } from "@/redux/offerSlice";
-import { useRouter } from "next/router";
 import { ImEye, ImCheckmark, ImCross } from "react-icons/im";
 import { GoChevronLeft, GoChevronRight } from "react-icons/go";
 import { IoMdPin } from "react-icons/io";
@@ -57,12 +56,10 @@ const OfferCard = ({ offer }: OfferCardProp) => {
     }));
   };
 
-  const router = useRouter();
   const dispatch = useDispatch();
 
   const onDelete = () => {
     dispatch(removeOffer(offer._id));
-    router.back(); // This stupid function allows right now to delete card and update the DOM, could not find better solution for this
   };
 
   const onClickEdit = () => setToggleEditMode((prev) => !prev);
@@ -85,34 +82,33 @@ const OfferCard = ({ offer }: OfferCardProp) => {
 
     setToggleEditMode(false);
     dispatch(updateOffer(offerData));
-    router.back(); // This stupid function allows right now to delete card and update the DOM, could not find better solution for this
   };
 
   return (
     <form
       onSubmit={onSubmit}
-      className="justify-center max-[390px]:space-y-4 space-y-8 border border-gray-800 outline-none rounded-xl w-full p-6 shadow-jobzLightPurple shadow-[inset_0_0_20px_-10px] max-md:max-w-[600px]"
+      className="justify-center max-[450px]:space-y-4 space-y-8 border border-gray-800 outline-none rounded-xl w-full p-6 shadow-jobzLightPurple shadow-[inset_0_0_20px_-10px] max-md:max-w-[600px]"
     >
       {!showFullDescription ? (
         <>
           <div
             className={`flex ${
-              !toggleEditMode ? "max-[390px]:flex-col" : "max-[600px]:flex-col"
+              !toggleEditMode ? "max-[450px]:flex-col" : "max-[600px]:flex-col"
             } ${
               !toggleEditMode
-                ? "max-[390px]:space-y-4"
+                ? "max-[450px]:space-y-4"
                 : "max-[600px]:space-y-4"
             } justify-between items-center`}
           >
             <div
               className={`flex flex-col ${
                 !toggleEditMode
-                  ? "max-[390px]:items-center"
+                  ? "max-[450px]:items-center"
                   : "max-[600px]:items-center"
               } items-start space-y-1`}
             >
               {!toggleEditMode ? (
-                <p className="max-[390px]:text-center max-[310px]:text-sm font-semibold">
+                <p className="max-[450px]:text-center max-[310px]:text-sm font-semibold">
                   {offer?.title}
                 </p>
               ) : (
@@ -129,7 +125,7 @@ const OfferCard = ({ offer }: OfferCardProp) => {
               )}
               <div
                 className={
-                  "flex opacity-80 items-center justify-around space-x-4 max-[390px]:text-xs text-sm w-full"
+                  "flex opacity-80 items-center justify-around space-x-4 max-[450px]:text-xs text-sm w-full"
                 }
               >
                 {!toggleEditMode ? (
@@ -169,7 +165,7 @@ const OfferCard = ({ offer }: OfferCardProp) => {
                 )}
               </div>
             </div>
-            <div className="flex flex-col space-y-4 max-[390px]:space-y-2 max-[390px]:items-center items-end ">
+            <div className="flex flex-col space-y-4 max-[450px]:space-y-2 max-[450px]:items-center items-end ">
               {!toggleEditMode &&
               (offer?.didSeen || offer?.didAccepted || offer?.didRejected) ? (
                 <div className="flex justify-evenly items-center space-x-4">
@@ -203,7 +199,7 @@ const OfferCard = ({ offer }: OfferCardProp) => {
               <div className="flex space-x-1 items-center">
                 <IoMdPin />
                 {!toggleEditMode ? (
-                  <p className="max-[390px]:opacity-80 max-[390px]:text-sm">
+                  <p className="max-[450px]:opacity-80 max-[450px]:text-sm">
                     {offer?.location}
                   </p>
                 ) : (
@@ -222,7 +218,7 @@ const OfferCard = ({ offer }: OfferCardProp) => {
             </div>
           </div>
           {!toggleEditMode ? (
-            <div className="relative flex justify-between max-[390px]:text-sm items-center">
+            <div className="relative flex justify-between max-[450px]:text-sm items-center">
               <p className="opacity-80">
                 {shortDescription}
                 {isDescriptionLong && "..."}
@@ -234,7 +230,7 @@ const OfferCard = ({ offer }: OfferCardProp) => {
                   data-te-toggle="tooltip"
                   title="See all description"
                 >
-                  <GoChevronRight className="text-jobzLightPurple max-[390px]:w-4 max-[390px]:h-4 w-6 h-6" />
+                  <GoChevronRight className="text-jobzLightPurple max-[450px]:w-4 max-[450px]:h-4 w-6 h-6" />
                 </button>
               )}
             </div>
@@ -254,10 +250,10 @@ const OfferCard = ({ offer }: OfferCardProp) => {
           <div
             className={`flex ${
               toggleEditMode && "max-[600px]:flex-col"
-            } justify-between space-x-4 space-y-4 items-center`}
+            } justify-between space-x-4 items-center`}
           >
             {!toggleEditMode ? (
-              <p className="max-[390px]:text-xs text-sm">
+              <p className="max-[450px]:text-xs text-sm">
                 {offer?.offeredMoney}
               </p>
             ) : (
@@ -285,11 +281,11 @@ const OfferCard = ({ offer }: OfferCardProp) => {
                 </select>
               </div>
             )}
-            <div className=" flex space-x-4 max-[390px]:space-x-2 items-center">
+            <div className=" flex space-x-4 max-[450px]:space-x-2 items-center">
               {!toggleEditMode ? (
                 <a
                   onClick={onDelete}
-                  className="max-[390px]:text-xs text-sm text-center text-jobzGrey hover:text-jobzOrange transition-colors cursor-pointer"
+                  className="max-[450px]:text-xs text-sm text-center text-jobzGrey hover:text-jobzOrange transition-colors cursor-pointer"
                 >
                   Withdraw offer
                 </a>
@@ -306,7 +302,7 @@ const OfferCard = ({ offer }: OfferCardProp) => {
                   size={24}
                   opacity={0.8}
                   cursor="pointer"
-                  className="max-[390px]:text-xs hover:opacity-100 transition-opacity"
+                  className="max-[450px]:text-xs hover:opacity-100 transition-opacity"
                   onClick={onClickEdit}
                 />
               ) : (

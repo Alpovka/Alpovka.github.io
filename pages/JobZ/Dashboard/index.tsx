@@ -62,11 +62,13 @@ function Dashboard({}: Props) {
     }
 
     dispatch(getOffers());
+  }, [user, router, isError, message, dispatch]);
 
+  useEffect(() => {
     return () => {
       dispatch(resetOffers());
     };
-  }, [user, router, isError, message, dispatch]);
+  }, [user, router]);
 
   return (
     <div
@@ -101,11 +103,13 @@ function Dashboard({}: Props) {
             </button>
           </div>
           <div className="flex flex-col items-center justify-center space-y-4">
-            <figure className="relative max-sm:w-24 max-sm:h-24  sm:w-32 sm:h-32 rounded-full">
+            <figure className="relative max-sm:w-24 max-sm:h-24 sm:w-32 sm:h-32 rounded-full">
               <Image alt="User profile picture" src={tempImage} fill priority />
             </figure>
             <header className="flex flex-col items-center md:items-start">
-              <h1 className="max-sm:text-lg sm:text-xl">{user?.name}</h1>
+              <h1 className="max-sm:text-lg max-md:text-center sm:text-xl">
+                {user?.name}
+              </h1>
               <h2 className="max-sm:text-base sm:text-lg">EasyQuant</h2>
             </header>
           </div>
