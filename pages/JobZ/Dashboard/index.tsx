@@ -9,6 +9,7 @@ import Image from "next/image";
 import tempImage from "../../../assets/jobz/xx2.png";
 import {
   ArrowLongLeftIcon,
+  BuildingOffice2Icon,
   PlusSmallIcon,
   XMarkIcon,
 } from "@heroicons/react/24/solid";
@@ -102,21 +103,31 @@ function Dashboard({}: Props) {
               Log Out
             </button>
           </div>
-          <div className="flex flex-col items-center justify-center space-y-4">
-            <figure className="relative max-sm:w-24 max-sm:h-24 sm:w-32 sm:h-32 rounded-full">
-              <Image alt="User profile picture" src={tempImage} fill priority />
-            </figure>
-            <header className="flex flex-col items-center md:items-start">
-              <h1 className="max-sm:text-lg max-md:text-center sm:text-xl">
-                {user?.name}
-              </h1>
-              <h2 className="max-sm:text-base sm:text-lg">EasyQuant</h2>
-            </header>
-          </div>
-          <div className="w-full my-12">
-            <ul className="flex justify-evenly items-center text-sm">
-              <li className="text-center px-[4vw]">
-                <button className="flex flex-col items-center space-y-2">
+          <div className="flex flex-col w-full max-md:space-y-8 my-8 mb-16 md:flex-row md:justify-evenly md:space-x-4 md:scale-[80%] lg:scale-100  items-center">
+            <div className="flex flex-col items-center justify-center space-y-4 md:flex-row md:space-x-8 md:justify-between">
+              <figure className="relative max-sm:w-24 max-sm:h-24 sm:w-32 sm:h-32 rounded-full md:min-w-[128px]">
+                <Image
+                  alt="User profile picture"
+                  src={tempImage}
+                  fill
+                  priority
+                />
+              </figure>
+              <header className="flex flex-col items-center md:items-start">
+                <h1 className="max-sm:text-lg max-md:text-center sm:text-xl">
+                  {user?.name}
+                </h1>
+                <div className="flex items-center justify-between space-x-3">
+                  <BuildingOffice2Icon className="w-4 md:w-5" />
+                  <h2 className="max-sm:text-base sm:text-lg">
+                    {user?.organization}
+                  </h2>
+                </div>
+              </header>
+            </div>
+            <ul className="flex max-md:w-full justify-evenly space-x-16 items-center text-xs xl:text-sm">
+              <li className="text-center">
+                <button className="flex flex-col items-center md:flex-row space-x-2 space-y-2">
                   <ImEye
                     size={16}
                     className="text-jobzYellow opacity-50 max-sm:visible sm:hidden"
@@ -131,8 +142,8 @@ function Dashboard({}: Props) {
                   </p>
                 </button>
               </li>
-              <li className="text-center px-[4vw]">
-                <button className="flex flex-col items-center space-y-2">
+              <li className="text-center">
+                <button className="flex flex-col items-center md:flex-row space-x-2 space-y-2">
                   <ImCheckmark
                     size={16}
                     className="text-jobzGreen opacity-50 max-sm:visible sm:hidden"
@@ -147,8 +158,8 @@ function Dashboard({}: Props) {
                   </p>
                 </button>
               </li>
-              <li className="text-center px-[4vw]">
-                <button className="flex flex-col items-center space-y-2">
+              <li className="text-center">
+                <button className="flex flex-col items-center md:flex-row space-x-2 space-y-2">
                   <ImCross
                     size={16}
                     className="text-jobzOrange opacity-50 max-sm:visible sm:hidden"
@@ -186,9 +197,13 @@ function Dashboard({}: Props) {
             )}
           </button>
           {toggleForm ? <OfferForm /> : null}
-          <div className="flex flex-col items-center space-y-8 w-full p-8">
+          <div className="flex flex-col md:grid md:grid-cols-2 xl:grid-cols-3 FHD:grid-cols-4 4K:grid-cols-6 gap-8 items-center max-md:space-y-8 w-full p-8 mt-8">
             {isLoading ? (
-              <h1>Offers are loading ...</h1>
+              <div className="three-body justify-self-center col-span-full md:mt-16 md:scale-125 2xl:mt-32 2xl:scale-150">
+                <div className="three-body__dot"></div>
+                <div className="three-body__dot"></div>
+                <div className="three-body__dot"></div>
+              </div>
             ) : (
               offers?.map((offer: any) => (
                 <OfferCard key={offer._id} offer={offer} />

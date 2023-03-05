@@ -105,6 +105,29 @@
       @apply transition-[0.4s] duration-[ease-in-out] text-[white] px-[2.3em] p-[0.5em] rounded-[5px] border-[none] hover:text-jobzLightPurple;
       outline: none;
     } 
+
+    /* Loader Classes */
+    .three-body {
+      @apply relative inline-block h-[var(--uib-size)] w-[var(--uib-size)] animate-[spin78236_calc(var(--uib-speed)_*_2.5)_infinite_linear];
+      --uib-size: 35px;
+      --uib-speed: 0.8s;
+      --uib-color: #5d3fd3;
+    }
+    .three-body__dot {
+      @apply absolute h-full w-[30%] after:content-[''] after:absolute after:h-[0%] after:w-full after:bg-[color:var(--uib-color)] after:pb-[100%] after:rounded-[50%];
+    }
+    .three-body__dot:nth-child(1) {
+      @apply rotate-[60deg] origin-[50%_85%] left-0 bottom-[5%] after:animate-[wobble1_var(--uib-speed)_infinite_ease-in-out] after:left-0 after:bottom-0;
+    }
+    .three-body__dot:nth-child(1)::after {
+      animation-delay: calc(var(--uib-speed) * -0.3);
+    }
+    .three-body__dot:nth-child(2) {
+      @apply rotate-[-60deg] origin-[50%_85%] right-0 bottom-[5%] after:animate-[wobble1_var(--uib-speed)_infinite_calc(var(--uib-speed)_*_-0.15)_ease-in-out] after:left-0 after:bottom-0;
+    }
+    .three-body__dot:nth-child(3) {
+      @apply bottom-[-5%] translate-x-[116.666%] left-0 after:animate-[wobble2_var(--uib-speed)_infinite_ease-in-out] after:left-0 after:top-0;
+    }    
 }
 
 @layer base {

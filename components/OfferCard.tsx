@@ -23,6 +23,8 @@ interface OfferCardProp {
   };
 }
 
+const MAXLENGTHDESC = 100;
+
 const OfferCard = ({ offer }: OfferCardProp) => {
   const [showFullDescription, setFullDescription] = useState(false);
   const [toggleEditMode, setToggleEditMode] = useState(false);
@@ -46,9 +48,6 @@ const OfferCard = ({ offer }: OfferCardProp) => {
     currency,
   } = formData;
 
-  const shortDescription = offer?.description.slice(0, 130);
-  const isDescriptionLong = offer?.description.length > 130;
-
   const onChange = (e: { target: { name: any; value: any } }) => {
     setFormData((prev) => ({
       ...prev,
@@ -60,6 +59,7 @@ const OfferCard = ({ offer }: OfferCardProp) => {
 
   const onDelete = () => {
     dispatch(removeOffer(offer._id));
+    setToggleEditMode((prev) => !prev);
   };
 
   const onClickEdit = () => setToggleEditMode((prev) => !prev);
@@ -84,6 +84,9 @@ const OfferCard = ({ offer }: OfferCardProp) => {
     dispatch(updateOffer(offerData));
   };
 
+  const shortDescription = offer?.description.slice(0, MAXLENGTHDESC);
+  const isDescriptionLong = offer?.description.length > MAXLENGTHDESC;
+
   return (
     <form
       onSubmit={onSubmit}
@@ -98,14 +101,14 @@ const OfferCard = ({ offer }: OfferCardProp) => {
               !toggleEditMode
                 ? "max-[450px]:space-y-4"
                 : "max-[600px]:space-y-4"
-            } justify-between items-center`}
+            } justify-between items-center md:h-[96px] flex-wrap `}
           >
             <div
               className={`flex flex-col ${
                 !toggleEditMode
                   ? "max-[450px]:items-center"
                   : "max-[600px]:items-center"
-              } items-start space-y-1`}
+              } items-start space-y-4`}
             >
               {!toggleEditMode ? (
                 <p className="max-[450px]:text-center max-[310px]:text-sm font-semibold">
@@ -121,6 +124,7 @@ const OfferCard = ({ offer }: OfferCardProp) => {
                   autoComplete="off"
                   className="bg-transparent max-[600px]:text-sm border border-jobzGrey border-opacity-30 rounded-sm px-4 py-1 outline-none"
                   placeholder={title}
+                  maxLength={20}
                 />
               )}
               <div
@@ -129,7 +133,7 @@ const OfferCard = ({ offer }: OfferCardProp) => {
                 }
               >
                 {!toggleEditMode ? (
-                  <p>{offer?.jobType}</p>
+                  <p>🔘 {offer?.jobType}</p>
                 ) : (
                   <select
                     name="jobType"
@@ -148,7 +152,7 @@ const OfferCard = ({ offer }: OfferCardProp) => {
                 )}
                 {!toggleEditMode ? (
                   <p className={`${offer?.isRemote && "text-jobzGreen"}`}>
-                    {offer?.isRemote ? "Remote" : "On-site"}
+                    🔘 {offer?.isRemote ? "Remote" : "On-site"}
                   </p>
                 ) : (
                   <select
@@ -218,8 +222,12 @@ const OfferCard = ({ offer }: OfferCardProp) => {
             </div>
           </div>
           {!toggleEditMode ? (
-            <div className="relative flex justify-between max-[450px]:text-sm items-center">
-              <p className="opacity-80">
+            <div className="relative flex justify-between max-[450px]:text-sm items-center ">
+              <p
+                className={`opacity-80 md:h-[80px] break-all ${
+                  isDescriptionLong && "pr-4"
+                }`}
+              >
                 {shortDescription}
                 {isDescriptionLong && "..."}
               </p>
@@ -250,7 +258,7 @@ const OfferCard = ({ offer }: OfferCardProp) => {
           <div
             className={`flex ${
               toggleEditMode && "max-[600px]:flex-col"
-            } justify-between space-x-4 items-center`}
+            } justify-between space-x-4 items-center scale-90 max:[600px]:space-y-4`}
           >
             {!toggleEditMode ? (
               <p className="max-[450px]:text-xs text-sm">
@@ -318,7 +326,7 @@ const OfferCard = ({ offer }: OfferCardProp) => {
         </>
       ) : (
         <div className="flex flex-col justify-between items-center space-y-6">
-          <p className="max-h-[230px] overflow-y-scroll overflow-x-hidden scrollbar-thin scrollbar-thumb-jobzLightPurple pr-8">
+          <p className="max-h-[230px] break-all overflow-y-scroll overflow-x-hidden scrollbar-thin scrollbar-thumb-jobzLightPurple pr-8">
             {offer?.description}
           </p>
           <div className="flex w-full justify-between items-center space-x-4">

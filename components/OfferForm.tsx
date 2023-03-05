@@ -65,6 +65,7 @@ const OfferForm = ({}: Props) => {
                 id="title"
                 value={title}
                 onChange={onChange}
+                maxLength={20}
                 autoComplete="off"
                 className="bg-slate-800 rounded-sm px-4 py-1 focus:outline-jobzLightPurple"
                 placeholder="Software Developer"
