@@ -117,7 +117,7 @@ function Dashboard({}: Props) {
                 <h1 className="max-sm:text-lg max-md:text-center sm:text-xl">
                   {user?.name}
                 </h1>
-                <div className="flex items-center justify-between space-x-3">
+                <div className="flex items-center justify-between space-x-2">
                   <BuildingOffice2Icon className="w-4 md:w-5" />
                   <h2 className="max-sm:text-base sm:text-lg">
                     {user?.organization}
@@ -127,7 +127,7 @@ function Dashboard({}: Props) {
             </div>
             <ul className="flex max-md:w-full justify-evenly space-x-16 items-center text-xs xl:text-sm">
               <li className="text-center">
-                <button className="flex flex-col items-center md:flex-row space-x-2 space-y-2">
+                <button className="flex flex-col items-center md:flex-row md:space-x-2 max-md:space-y-2">
                   <ImEye
                     size={16}
                     className="text-jobzYellow opacity-50 max-sm:visible sm:hidden"
@@ -143,7 +143,7 @@ function Dashboard({}: Props) {
                 </button>
               </li>
               <li className="text-center">
-                <button className="flex flex-col items-center md:flex-row space-x-2 space-y-2">
+                <button className="flex flex-col items-center md:flex-row md:space-x-2 max-md:space-y-2">
                   <ImCheckmark
                     size={16}
                     className="text-jobzGreen opacity-50 max-sm:visible sm:hidden"
@@ -159,7 +159,7 @@ function Dashboard({}: Props) {
                 </button>
               </li>
               <li className="text-center">
-                <button className="flex flex-col items-center md:flex-row space-x-2 space-y-2">
+                <button className="flex flex-col items-center md:flex-row md:space-x-2 max-md:space-y-2">
                   <ImCross
                     size={16}
                     className="text-jobzOrange opacity-50 max-sm:visible sm:hidden"

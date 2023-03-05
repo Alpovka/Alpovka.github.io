@@ -258,7 +258,7 @@ const OfferCard = ({ offer }: OfferCardProp) => {
           <div
             className={`flex ${
               toggleEditMode && "max-[600px]:flex-col"
-            } justify-between space-x-4 items-center scale-90 max:[600px]:space-y-4`}
+            } justify-between space-x-4 items-center scale-90 max-[600px]:space-y-4`}
           >
             {!toggleEditMode ? (
               <p className="max-[450px]:text-xs text-sm">
