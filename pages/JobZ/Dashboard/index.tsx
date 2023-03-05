@@ -19,6 +19,7 @@ import { ImCheckmark, ImCross, ImEye } from "react-icons/im";
 type Props = {};
 
 function Dashboard({}: Props) {
+  const [hydrated, setHydrated] = useState(false);
   const [toggleForm, setToggleForm] = useState(false);
   const [error, setError] = useState();
   const router = useRouter();
@@ -70,6 +71,14 @@ function Dashboard({}: Props) {
       dispatch(resetOffers());
     };
   }, [user, router]);
+
+  useEffect(() => {
+    setHydrated(true);
+  }, []);
+
+  if (!hydrated) {
+    return null;
+  }
 
   return (
     <div
