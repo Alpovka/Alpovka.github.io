@@ -42,7 +42,12 @@ const Redirector = (props: Props) => {
   return (
     <div className="fixed w-screen h-screen bg-jobzBlack flex flex-col justify-center items-center">
       <div className="absolute self-end max-sm:w-[150%] sm:max-lg:w-[90%]  lg:w-[50%] 2xl:w-[70%] h-full">
-        <Image alt="background of landing page" src={BackgroundTechs} fill />
+        <Image
+          alt="background of landing page"
+          src={BackgroundTechs}
+          fill
+          priority
+        />
       </div>
       <Head>
         <title>Alpovka JobZ</title>

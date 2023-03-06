@@ -6,7 +6,7 @@ import { reset as resetOffers, getOffers } from "@/redux/offerSlice";
 import OfferForm from "@/components/OfferForm";
 import OfferCard from "@/components/OfferCard";
 import Image from "next/image";
-import tempImage from "../../../assets/jobz/xx2.png";
+import tempImage from "../../../assets/jobz/userTemp.png";
 import {
   ArrowLongLeftIcon,
   BuildingOffice2Icon,
