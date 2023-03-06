@@ -246,7 +246,7 @@ function Dashboard({}: Props) {
                       translateY: 50,
                     }}
                     whileInView={{ opacity: 1, translateX: 0, translateY: 0 }}
-                    transition={{ duration: 0.3, delay: index * 0.2 }}
+                    transition={{ duration: 0.3, delay: (index * 0.3) % 0.1 }}
                     viewport={{ once: true }}
                   >
                     <OfferCard
