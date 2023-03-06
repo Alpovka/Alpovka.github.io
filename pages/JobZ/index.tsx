@@ -9,6 +9,7 @@ import { FaLinkedinIn } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import ProfilePicture from "../../assets/jobz/xx2.png";
 import BackgroundTechs from "../../assets/jobz/landing.png";
+import { motion } from "framer-motion";
 
 type Props = {};
 
@@ -22,8 +23,24 @@ const Redirector = (props: Props) => {
     }
   }, [user, router]);
 
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        delayChildren: 0.1,
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const item = {
+    hidden: { opacity: 0 },
+    show: { opacity: 1 },
+  };
+
   return (
-    <div className="fixed w-screen h-screen bg-jobzBlack flex flex-col justify-center items-center ">
+    <div className="fixed w-screen h-screen bg-jobzBlack flex flex-col justify-center items-center">
       <div className="absolute self-end max-sm:w-[150%] sm:max-lg:w-[90%]  lg:w-[50%] 2xl:w-[70%] h-full">
         <Image alt="background of landing page" src={BackgroundTechs} fill />
       </div>
@@ -37,7 +54,28 @@ const Redirector = (props: Props) => {
       </Head>
       {!user ? (
         <>
-          <div className="absolute bottom-0 -left-72 -rotate-[10deg]">
+          <motion.div
+            initial={{
+              x: -200,
+              y: -200,
+              rotate: 45,
+              opacity: 0,
+            }}
+            animate={{
+              x: 0,
+              y: -25,
+              rotate: -8,
+              opacity: 1,
+            }}
+            transition={{
+              type: "spring",
+              stiffness: 50,
+            }}
+            viewport={{
+              once: true,
+            }}
+            className="absolute bottom-0 -left-72 -rotate-[10deg]"
+          >
             <div className="cards w-[200px] h-[250px] -rotate-[60deg]">
               <figure className="card flex flex-col items-center justify-end">
                 <Link
@@ -60,28 +98,78 @@ const Redirector = (props: Props) => {
                 </Link>
               </figure>
             </div>
-          </div>
-          <Link
-            href={"/"}
-            className="absolute top-5 left-5 cta flex items-center justify-center self-start scale-[75%]"
+          </motion.div>
+          <motion.div
+            className="absolute top-5 left-5"
+            initial={{
+              x: 50,
+              opacity: 0,
+            }}
+            animate={{
+              x: 0,
+              opacity: 1,
+            }}
+            transition={{
+              duration: 0.8,
+            }}
+            viewport={{
+              once: true,
+            }}
           >
-            <ArrowLongLeftIcon
-              id="arrow-horizontal"
-              className="text-jobzWhite"
-              width={24}
-              height={24}
-              style={{
-                marginBottom: 6,
-              }}
-            />
-            <span className="hover-underline-animation">Go to portfolio</span>
-          </Link>
-          <h1 className="absolute top-0 right-0 uppercase text-jobzWhite leading-tight font-extralight font tracking-wider text-3xl sm:text-5xl text-justify lg:text-start md:text-5xl p-8 mt-[10vh] md:w-[60vw] lg:w-[50vw] lg:text-7xl 2xl:w-[50vw] 2xl:text-8xl 2xl:mr-16 max-[350px]:text-2xl max-sm:mt-[6vh] max-[280px]:text-xl">
+            <Link
+              href="/"
+              className="cta flex items-center justify-center self-start scale-[75%]"
+            >
+              <ArrowLongLeftIcon
+                id="arrow-horizontal"
+                className="text-jobzWhite"
+                width={24}
+                height={24}
+                style={{
+                  marginBottom: 6,
+                }}
+              />
+              <span className="hover-underline-animation">Go to portfolio</span>
+            </Link>
+          </motion.div>
+          <motion.header
+            initial={{
+              y: 50,
+              opacity: 0,
+            }}
+            whileInView={{
+              y: 0,
+              opacity: 1,
+            }}
+            transition={{
+              duration: 0.8,
+            }}
+            viewport={{
+              once: true,
+            }}
+            className="absolute top-0 right-0 uppercase text-jobzWhite leading-tight font-extralight font tracking-wider text-3xl sm:text-5xl text-justify lg:text-start md:text-5xl p-8 mt-[10vh] md:w-[60vw] lg:w-[50vw] lg:text-7xl 2xl:w-[50vw] 2xl:text-8xl 2xl:mr-16 max-[350px]:text-2xl max-sm:mt-[6vh] max-[280px]:text-xl"
+          >
             My <span className="font-bold">job</span> platform for collecting{" "}
             <span className="font-bold">offers</span> from{" "}
             <span className="font-bold">you.</span>
-          </h1>
-          <div className="absolute flex flex-col justify-evenly space-y-4 items-start p-8 md:max-lg:pr-16 md:max-lg:pt-0 pl-16 pr-8 lg:pr-0 mt-36 pb-16 md:mt-0 md:top-[10vh] md:left-10 md:w-[40vw] max-[500px]:scale-90  max-[440px]:top-[5vh] max-sm:top-[5vh]">
+          </motion.header>
+          <motion.div
+            initial={{
+              y: 50,
+              opacity: 0,
+            }}
+            whileInView={{
+              y: 0,
+              opacity: 1,
+            }}
+            transition={{
+              duration: 0.8,
+            }}
+            viewport={{
+              once: true,
+            }}
+            className="coolTextEntrance absolute flex flex-col justify-evenly space-y-4 items-start p-8 md:max-lg:pr-16 md:max-lg:pt-0 pl-16 pr-8 lg:pr-0 mt-36 pb-16 md:mt-0 md:top-[10vh] md:left-10 md:w-[40vw] max-[500px]:scale-90  max-[440px]:top-[5vh] max-sm:top-[5vh]"
+          >
             <div className="w-full h-80 flex flex-col space-y-2 md:max-lg:items-center sm:max-md:mt-10 ">
               <Image
                 alt="Profile Picture"
@@ -105,24 +193,54 @@ const Redirector = (props: Props) => {
                 type of job. Consistent, trusty work guaranteed.
               </p>
             </div>
-          </div>
+          </motion.div>
           <div className="absolute top-[62.5vh] px-8 md:top-[50vh] md:right-4 md:w-[35vw] xl:left-[10vw] xl:top-[45vh] xl:w-[90vh] lg:max-xl:top-[77.5vh]">
-            <ul className="flex space-x-20 text-jobzWhite max-[400px]:text-xs md:flex-col md:space-y-6 max-[330px]:space-x-8 xl:flex-row lg:max-xl:flex-row">
-              <li className="-space-y-1 md:w-[100px] self-start lg:max-xl:translate-y-6">
+            <motion.ul
+              variants={container}
+              initial="hidden"
+              animate="show"
+              className="flex space-x-20 text-jobzWhite max-[400px]:text-xs md:flex-col md:space-y-6 max-[330px]:space-x-8 xl:flex-row lg:max-xl:flex-row"
+            >
+              <motion.li
+                variants={item}
+                className="-space-y-1 md:w-[100px] self-start lg:max-xl:translate-y-6"
+              >
                 <h1 className="font-bold">8H+</h1>
                 <p className="font-titillium opacity-60">On pc</p>
-              </li>
-              <li className="-space-y-1 md:w-[100px] self-center md:-translate-x-6 xl:-translate-y-6">
+              </motion.li>
+              <motion.li
+                variants={item}
+                className="-space-y-1 md:w-[100px] self-center md:-translate-x-6 xl:-translate-y-6"
+              >
                 <h1 className="font-bold">24/7</h1>
                 <p className="font-titillium opacity-60">Loves Coding</p>
-              </li>
-              <li className="-space-y-1 md:w-[100px] self-end xl:-translate-y-6">
+              </motion.li>
+              <motion.li
+                variants={item}
+                className="-space-y-1 md:w-[100px] self-end xl:-translate-y-6"
+              >
                 <h1 className="font-bold">15€ / H</h1>
                 <p className="font-titillium opacity-60">Starting price</p>
-              </li>
-            </ul>
+              </motion.li>
+            </motion.ul>
           </div>
-          <div className="flex flex-col justify-between w-[60%] h-80 p-8 mt-[50vh] lg:mt-[40vh] rounded-2xl z-10 ">
+          <motion.div
+            initial={{
+              x: 50,
+              opacity: 0,
+            }}
+            animate={{
+              x: 0,
+              opacity: 1,
+            }}
+            transition={{
+              duration: 1.2,
+            }}
+            viewport={{
+              once: true,
+            }}
+            className="flex flex-col justify-between w-[60%] h-80 p-8 mt-[50vh] lg:mt-[40vh] rounded-2xl z-10 "
+          >
             <Link
               href={"/JobZ/Register"}
               className="flex justify-center items-center entranceButton entranceButton:hover .entranceButton:active max-sm:mt-26 md:max-lg:ml-24 xl:mt-24 xl:ml-28 max-md:scale-[70%] max-md:mt-24 lg:max-xl:-mt-10 lg:max-xl:-ml-12"
@@ -135,7 +253,7 @@ const Redirector = (props: Props) => {
             >
               <p className=" text-jobzWhite font-titillium">Login</p>
             </Link>
-          </div>
+          </motion.div>
         </>
       ) : null}
     </div>
