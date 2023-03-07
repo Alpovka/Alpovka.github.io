@@ -17,6 +17,7 @@ import Link from "next/link";
 import { ImCheckmark, ImCross, ImEye } from "react-icons/im";
 import Head from "next/head";
 import { motion } from "framer-motion";
+import { AppDispatch } from "@/redux/store";
 
 type Props = {};
 
@@ -25,11 +26,11 @@ function Dashboard({}: Props) {
   const [toggleForm, setToggleForm] = useState(false);
   const [error, setError] = useState();
   const router = useRouter();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const [firstLoadCompleted, setFirstLoadCompleted] = useState(false);
-  const { user } = useSelector((state) => state.authUser);
+  const { user } = useSelector((state: any) => state.authUser);
   const { offers, isLoading, isError, message, isSuccess } = useSelector(
-    (state) => state.offers
+    (state: any) => state.offers
   );
 
   const onLogout = () => {
@@ -61,7 +62,7 @@ function Dashboard({}: Props) {
     if (!isLoading && isSuccess) {
       setFirstLoadCompleted(true);
     }
-  });
+  }, [isLoading, isSuccess]);
 
   useEffect(() => {
     if (!user) {
@@ -73,13 +74,13 @@ function Dashboard({}: Props) {
     }
 
     dispatch(getOffers());
-  }, [user, isError, message, dispatch]);
+  }, [user, router, isError, message, dispatch]);
 
   useEffect(() => {
     return () => {
       dispatch(resetOffers());
     };
-  }, [user, router]);
+  }, [user, dispatch, router]);
 
   useEffect(() => {
     setHydrated(true);

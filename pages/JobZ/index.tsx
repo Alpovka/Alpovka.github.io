@@ -15,7 +15,7 @@ type Props = {};
 
 const Redirector = (props: Props) => {
   const router = useRouter();
-  const { user } = useSelector((state) => state.authUser);
+  const { user } = useSelector((state: any) => state.authUser);
 
   useEffect(() => {
     if (user) {

@@ -11,12 +11,13 @@ import {
   UserIcon,
 } from "@heroicons/react/24/solid";
 import Head from "next/head";
+import { AppDispatch } from "@/redux/store";
 
 type Props = {};
 
 const Register = (props: Props) => {
   const [error, setError] = useState<null | string>(null);
-  const [success, setSuccess] = useState(false)
+  const [success, setSuccess] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     organization: "",
@@ -28,10 +29,10 @@ const Register = (props: Props) => {
   const { name, email, password, passwordAgain, organization } = formData;
 
   const router = useRouter();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   const { user, isLoading, isError, isSuccess, message } = useSelector(
-    (state) => state.authUser
+    (state: any) => state.authUser
   );
 
   useEffect(() => {
@@ -39,8 +40,8 @@ const Register = (props: Props) => {
       setError(message);
     }
 
-    if(isSuccess){
-      setSuccess(true)
+    if (isSuccess) {
+      setSuccess(true);
     }
 
     dispatch(reset());
@@ -55,18 +56,24 @@ const Register = (props: Props) => {
   };
 
   const handleLogin = () => {
-    setError("")
-    router.push("/JobZ/Login")
-  }
+    setError("");
+    router.push("/JobZ/Login");
+  };
 
   const onSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
-    const passValidateRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,20}$/ 
+    const passValidateRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,20}$/;
 
-    if(!passValidateRegex.test(password) || !passValidateRegex.test(passwordAgain)){
-      setError("Not valid password! Password must contain, 6-20 characters, including at least 1 upper and lowercase letter, 1 number and 1 symbol.")
-      return
+    if (
+      !passValidateRegex.test(password) ||
+      !passValidateRegex.test(passwordAgain)
+    ) {
+      setError(
+        "Not valid password! Password must contain, 6-20 characters, including at least 1 upper and lowercase letter, 1 number and 1 symbol."
+      );
+      return;
     }
 
     if (password !== passwordAgain) {
@@ -87,10 +94,7 @@ const Register = (props: Props) => {
     <div className="flex flex-col bg-jobzBlack h-screen justify-evenly items-center">
       <Head>
         <title>Alpovka JobZ/Register</title>
-        <meta
-          name="description"
-          content="Alpovka JobZ Entrance"
-        />
+        <meta name="description" content="Alpovka JobZ Entrance" />
         <link rel="icon" type="image/png" href="../images/favicon.png" />
       </Head>
       <Link
@@ -187,23 +191,32 @@ const Register = (props: Props) => {
             />
           </div>
           <div className="field space-x-4 px-4">
-            <input type="checkbox" name="use-condition" id="use-condition"    autoComplete="off" required/>
-            <p>I accept the storage of all my information that I have specified in this form and on the platform.</p>
+            <input
+              type="checkbox"
+              name="use-condition"
+              id="use-condition"
+              autoComplete="off"
+              required
+            />
+            <p>
+              I accept the storage of all my information that I have specified
+              in this form and on the platform.
+            </p>
           </div>
           {error && <p className="text-jobzOrange text-center mt-4">{error}</p>}
           {success ? (
             <p className="text-jobzGreen text-center mt-4">
               The link to confirm your account has been sent to your email
             </p>
-          ) : <button className="button1 mt-8">
-            {isLoading ? "Loading..." : "Create your account"}
-          </button>}
+          ) : (
+            <button className="button1 mt-8">
+              {isLoading ? "Loading..." : "Create your account"}
+            </button>
+          )}
           <div className="flex items-center justify-around my-8">
-            <p className="text-center">I have an account</p><span>-></span>
-            <button
-              className="button2 text-center"
-              onClick={handleLogin}
-            >
+            <p className="text-center">I have an account</p>
+            <span>-{">"}</span>
+            <button className="button2 text-center" onClick={handleLogin}>
               Login
             </button>
           </div>

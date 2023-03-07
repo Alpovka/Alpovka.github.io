@@ -3,14 +3,14 @@ import authUserService from "../pages/api/users/authUserService";
 
 
 const initialState = {
-    user: typeof window !== "undefined" ? JSON.parse(localStorage.getItem("user")) : null,
+    user: typeof window !== "undefined" ? JSON.parse(localStorage.getItem("user") as string) : null,
     isError: false,
     isSuccess: false,
     isLoading: false,
     message: "",
 }
 
-export const register = createAsyncThunk("authUser/register", async (user, thunkAPI) => {
+export const register = createAsyncThunk("authUser/register", async (user: any, thunkAPI) => {
     try {
         return await authUserService.register(user)
     } catch (error: any) {
@@ -19,7 +19,7 @@ export const register = createAsyncThunk("authUser/register", async (user, thunk
     }
 })
 
-export const login = createAsyncThunk("authUser/login", async (user, thunkAPI) => {
+export const login = createAsyncThunk("authUser/login", async (user: any, thunkAPI) => {
     try {
         return await authUserService.login(user)
     } catch (error: any) {
@@ -57,7 +57,7 @@ export const authUserSlice = createSlice({
             state.isSuccess = false
             state.isLoading = false
             state.isError = true
-            state.message = action.payload
+            state.message = JSON.stringify(action.payload)
         }).addCase(login.pending, (state) => {
             state.isLoading = true
         }).addCase(login.fulfilled, (state, action) => {
@@ -67,7 +67,7 @@ export const authUserSlice = createSlice({
         }).addCase(login.rejected, (state, action) =>{
             state.isLoading = false
             state.isError = true
-            state.message = action.payload
+            state.message = JSON.stringify(action.payload)
             state.user = null
         })
         .addCase(logout.fulfilled, (state) => {

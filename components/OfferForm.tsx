@@ -1,3 +1,4 @@
+import { AppDispatch } from "@/redux/store";
 import { useState } from "react";
 import { Oval } from "react-loader-spinner";
 import { useDispatch } from "react-redux";
@@ -26,7 +27,7 @@ const OfferForm = ({ fetchStatus }: OfferFormProps) => {
   const { title, jobType, location, description, offeredMoney, currency } =
     formData;
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   const onChange = (e: { target: { name: any; value: any } }) => {
     setFormData((prev) => ({

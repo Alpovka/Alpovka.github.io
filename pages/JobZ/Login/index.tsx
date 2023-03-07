@@ -9,6 +9,7 @@ import {
   LockClosedIcon,
 } from "@heroicons/react/24/solid";
 import Head from "next/head";
+import { AppDispatch } from "@/redux/store";
 
 type Props = {};
 
@@ -22,10 +23,10 @@ const Login = (props: Props) => {
   const { email, password } = formData;
 
   const router = useRouter();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   const { user, isLoading, isError, isSuccess, message } = useSelector(
-    (state) => state.authUser
+    (state: any) => state.authUser
   );
 
   useEffect(() => {
@@ -141,7 +142,7 @@ const Login = (props: Props) => {
             Forgot Password
           </button>
           <div className="flex items-center justify-around mb-8 mt-8">
-            <p className="text-cente">Don't you have an account ?</p>
+            <p className="text-cente">Don&rsquo;t you have an account ?</p>
             <button
               className="button2 text-center"
               onClick={() => router.push("/JobZ/Register")}

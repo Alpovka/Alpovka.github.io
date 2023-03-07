@@ -6,6 +6,7 @@ import { IoMdPin } from "react-icons/io";
 import { FiEdit } from "react-icons/fi";
 import { useState } from "react";
 import { Oval } from "react-loader-spinner";
+import { AppDispatch } from "@/redux/store";
 
 interface OfferCardProp {
   fetchStatus: {
@@ -61,7 +62,7 @@ const OfferCard = ({ offer, fetchStatus }: OfferCardProp) => {
     }));
   };
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   const onDelete = () => {
     dispatch(removeOffer(offer._id));
