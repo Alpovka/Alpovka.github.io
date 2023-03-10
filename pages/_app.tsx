@@ -1,11 +1,7 @@
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import { Provider } from "react-redux";
-<<<<<<< HEAD
 import { wrapper } from "../redux/store";
-=======
-const { wrapper } = require("../redux/store");
->>>>>>> e77864a6779f1f7038622fd7b7e1330a47fe294a
 import Script from "next/script";
 
 export default function App({ Component, ...rest }: AppProps) {
