@@ -24,7 +24,7 @@ module.exports = (phase, { defaultConfig }) => {
     /* config options for all phases except development here */
     ...defaultConfig,
     env: {
-      API_URL: "https://alpovka.github.io"
+      API_URL: `http://ec2-16-170-244-127.eu-north-1.compute.amazonaws.com`
     }
   }
 }
