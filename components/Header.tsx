@@ -56,7 +56,7 @@ export default function Header({}: Props) {
           duration: 1.5,
         }}
       >
-        <Link
+        {/* <Link
           href="/JobZ"
           className="cursor-pointer flex items-center space-x-3"
         >
@@ -64,7 +64,7 @@ export default function Header({}: Props) {
           <p className="uppercase hidden md:inline-flex text-sm text-gray-400">
             my job platform
           </p>
-        </Link>
+        </Link> */}
 
         <Link
           href="#contact-me"
