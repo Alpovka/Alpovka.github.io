@@ -218,7 +218,7 @@ const Redirector = (props: Props) => {
               variants={container}
               initial="hidden"
               animate="show"
-              className="flex space-x-20 text-jobzWhite max-[400px]:text-xs md:flex-col md:space-y-6 max-[330px]:space-x-8 xl:flex-row lg:max-xl:flex-row"
+              className="flex space-x-20 text-jobzWhite max-[500px]:text-xs md:flex-col md:space-y-6 max-[330px]:space-x-8 xl:flex-row lg:max-xl:flex-row"
             >
               <motion.li
                 variants={item}
