@@ -11,6 +11,7 @@ const JuniorAlert: React.FC<JuniorAlertProps> = ({ pageKey }) => {
   // State for visibility and client-side mount status
   const [isVisible, setIsVisible] = useState(false); // Start hidden
   const [isMounted, setIsMounted] = useState(false);
+  const [isAnimated, setIsAnimated] = useState(false); // New state for animation
 
   useEffect(() => {
     // This effect runs only on the client
@@ -18,13 +19,24 @@ const JuniorAlert: React.FC<JuniorAlertProps> = ({ pageKey }) => {
     if (localStorage.getItem(ALERT_STORAGE_KEY) !== "true") {
       // Show only if the flag isn't set in localStorage
       setIsVisible(true);
+
+      // Trigger animation after a small delay
+      setTimeout(() => {
+        setIsAnimated(true);
+      }, 300);
     }
   }, [ALERT_STORAGE_KEY]); // Depend on the specific key
 
   const handleClose = () => {
-    // Hide the alert and set the flag in localStorage
-    localStorage.setItem(ALERT_STORAGE_KEY, "true");
-    setIsVisible(false);
+    // First remove the animation
+    setIsAnimated(false);
+
+    // Then wait for animation to complete before hiding
+    setTimeout(() => {
+      // Hide the alert and set the flag in localStorage
+      localStorage.setItem(ALERT_STORAGE_KEY, "true");
+      setIsVisible(false);
+    }, 300); // Match transition duration
   };
 
   // Don't render anything server-side or before mount check
@@ -34,14 +46,18 @@ const JuniorAlert: React.FC<JuniorAlertProps> = ({ pageKey }) => {
   }
 
   return (
-    // Moved z-50 here and kept relative positioning
-    <div className="relative z-50">
-      {/* Removed z-50 from h2 */}
+    // Added transition classes for smooth animation
+    <div
+      className={`relative z-50 transition-all duration-300 ease-in-out ${
+        isAnimated
+          ? "opacity-100 transform translate-y-0"
+          : "opacity-0 transform -translate-y-4"
+      }`}
+    >
       <h2 className="p-4 pr-8 bg-gray-800 text-gray-200 text-sm border border-orange-500/50 rounded-lg shadow-lg shadow-orange-500/20 w-[300px] mx-auto">
-        {/* Close button - Added z-10 */}
         <button
           onClick={handleClose}
-          className="absolute top-1 right-1 p-1 text-gray-400 hover:text-white focus:outline-none z-10"
+          className="absolute top-1 right-1 p-1 text-gray-400 hover:text-white focus:outline-none z-10 transition-colors duration-200"
           aria-label="Close alert"
         >
           <svg
@@ -66,7 +82,7 @@ const JuniorAlert: React.FC<JuniorAlertProps> = ({ pageKey }) => {
           href="https://www.linkedin.com/in/alpovka/"
           target="_blank"
           rel="noopener noreferrer"
-          className="underline text-orange-400 hover:text-orange-300"
+          className="underline text-orange-400 hover:text-orange-300 transition-colors duration-200"
         >
           LinkedIn profile
         </a>
