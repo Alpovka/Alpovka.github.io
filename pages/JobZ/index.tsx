@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 import ProfilePicture from "../../assets/jobz/xx2.png";
 import BackgroundTechs from "../../assets/jobz/landing.png";
 import { motion } from "framer-motion";
+import JuniorAlert from "../../components/JuniorAlert";
 
 type Props = {};
 
@@ -41,6 +42,9 @@ const Redirector = (props: Props) => {
 
   return (
     <div className="fixed w-screen h-screen bg-jobzBlack flex flex-col justify-center items-center">
+      <div className="absolute top-10">
+        <JuniorAlert pageKey="jobzIndex" />
+      </div>
       <motion.div
         initial={{
           opacity: 0,

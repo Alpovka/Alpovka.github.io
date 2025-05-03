@@ -4,6 +4,7 @@ import { Cursor, useTypewriter } from "react-simple-typewriter";
 import BackgroundAnimation from "./BackgroundAnimation";
 import profileImg from "../assets/pp.png";
 import Link from "next/link";
+import JuniorAlert from "./JuniorAlert";
 
 type Props = {};
 
@@ -19,6 +20,7 @@ export default function Alpovka({}: Props) {
   });
   return (
     <div className="h-screen flex flex-col space-y-8 items-center justify-center text-center overflow-hidden">
+      <JuniorAlert pageKey="alpovka" />
       <div className="mt-[100px]">
         <BackgroundAnimation />
         <Image
