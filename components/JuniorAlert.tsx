@@ -59,7 +59,7 @@ const JuniorAlert: React.FC<JuniorAlertProps> = ({ pageKey }) => {
             />
           </svg>
         </button>
-        This portfolio is from my junior developer days. As I&apos;m now focused
+        This website is from my junior developer days. As I&apos;m now focused
         on more complex projects, I&apos;m leaving this up as a historical
         record. For my latest work and updates, please visit my{" "}
         <a
