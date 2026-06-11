@@ -453,6 +453,7 @@ body.is-loading { overflow: hidden; }
   letter-spacing: -0.04em;
   line-height: 0.98;
   margin-bottom: 44px;
+  padding-left: clamp(10px, 2.2vw, 38px);
 }
 .hero-title .serif { color: var(--accent); font-size: 1.02em; }
 
@@ -477,6 +478,7 @@ body.is-loading { overflow: hidden; }
   color: var(--fg-mid);
   font-size: 1.07rem;
   line-height: 1.7;
+  padding-left: clamp(10px, 2.2vw, 38px);
 }
 .hero-cta { display: flex; gap: 18px; flex-shrink: 0; flex-wrap: wrap; }
 
