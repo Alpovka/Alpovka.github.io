@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# AlpovkApps — alpovka.github.io
 
-## Getting Started
+The product studio & portfolio of **Alperen Karavelioglu**.
 
-First, run the development server:
+> Software that gets funded, shipped, used daily — and acquired.
+
+**Live:** https://alpovka.github.io
+
+## What's inside
+
+A hand-crafted static site — no frameworks, no build step, no templates.
+
+- `index.html` — single-page, story-driven structure
+- `assets/css/style.css` — design system, dark/light themes, motion
+- `assets/js/main.js` — interaction engine:
+  - particle network hero canvas (pointer-reactive, pauses off-screen)
+  - parallax layers & scroll-driven progress rails
+  - scroll reveals, animated counters, word rotator
+  - 3D tilt cards & magnetic buttons
+  - light/dark theme with View Transitions circular reveal
+  - fully respects `prefers-reduced-motion`
+
+## Run locally
+
+Any static server works:
 
 ```bash
-npm run dev
+npx serve .
 # or
-yarn dev
-# or
-pnpm dev
+python3 -m http.server 8000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Deploy
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+Pushes to `main` deploy automatically to GitHub Pages via
+`.github/workflows/publish.yml`.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Contact
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- karavelx@gmail.com
+- [linkedin.com/in/alpovka](https://www.linkedin.com/in/alpovka)
+- [github.com/Alpovka](https://github.com/Alpovka)
