@@ -6,7 +6,7 @@
   <title>AlpovkApps — Product studio of Alperen Karavelioglu</title>
   <meta name="description" content="AlpovkApps is the independent product studio of Alperen Karavelioglu — a senior software engineer who takes web, mobile and AI products from first commit to funded, shipped and acquired." />
   <meta name="author" content="Alperen Karavelioglu" />
-  <meta name="theme-color" content="#07070d" />
+  <meta name="theme-color" content="#0b0b0c" />
 
   <meta property="og:type" content="website" />
   <meta property="og:title" content="AlpovkApps — Software that gets funded, shipped and acquired" />
@@ -19,56 +19,39 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
 
-  <!-- ░░ Preloader ░░ -->
+  <!-- ░ Preloader -->
   <div class="preloader" id="preloader" aria-hidden="true">
-    <svg class="preloader-mark" viewBox="0 0 64 64" width="72" height="72">
-      <defs>
-        <linearGradient id="plg" x1="0" y1="64" x2="64" y2="0" gradientUnits="userSpaceOnUse">
-          <stop offset="0" stop-color="#aef72e"/><stop offset=".55" stop-color="#3ddc97"/><stop offset="1" stop-color="#22d3ee"/>
-        </linearGradient>
-      </defs>
-      <path class="pl-frame" d="M24 6 H20 Q6 6 6 20 V44 Q6 58 20 58 H44 Q58 58 58 44 V20 Q58 6 44 6 H40" fill="none" stroke="url(#plg)" stroke-width="3.5" stroke-linecap="round"/>
-      <path class="pl-a" d="M17 47 L32 9 L47 47" fill="none" stroke="url(#plg)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
-      <path class="pl-bar" d="M25 33.5 H39" fill="none" stroke="url(#plg)" stroke-width="4" stroke-linecap="round"/>
-      <circle class="pl-dot" cx="32" cy="3" r="2.6" fill="#22d3ee"/>
+    <svg class="preloader-mark" viewBox="0 0 64 64" width="64" height="64">
+      <path class="pl-frame" d="M24 6 H20 Q6 6 6 20 V44 Q6 58 20 58 H44 Q58 58 58 44 V20 Q58 6 44 6 H40" fill="none" stroke-width="2.5" stroke-linecap="round"/>
+      <path class="pl-a" d="M17 47 L32 9 L47 47" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      <path class="pl-bar" d="M25 33.5 H39" fill="none" stroke-width="2.5" stroke-linecap="round"/>
+      <circle class="pl-dot" cx="32" cy="3" r="2.4"/>
     </svg>
   </div>
 
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <!-- ░░ Ambient background ░░ -->
-  <div class="ambient" aria-hidden="true">
-    <div class="ambient-grid"></div>
-    <div class="ambient-glow ambient-glow-1" data-parallax="-0.06"></div>
-    <div class="ambient-glow ambient-glow-2" data-parallax="0.05"></div>
-  </div>
-
-  <div class="cursor" id="cursor" aria-hidden="true"></div>
+  <div class="cursor" id="cursor" aria-hidden="true"><span class="cursor-label" id="cursorLabel"></span></div>
   <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
   <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
-  <!-- ░░ Header ░░ -->
+  <!-- ░ Header -->
   <header class="header" id="header">
     <nav class="nav container" aria-label="Main">
       <a class="brand" href="#top" aria-label="AlpovkApps — home">
-        <svg class="brand-mark" viewBox="0 0 64 64" width="34" height="34" aria-hidden="true">
-          <defs>
-            <linearGradient id="bg1" x1="0" y1="64" x2="64" y2="0" gradientUnits="userSpaceOnUse">
-              <stop offset="0" stop-color="#aef72e"/><stop offset=".55" stop-color="#3ddc97"/><stop offset="1" stop-color="#22d3ee"/>
-            </linearGradient>
-          </defs>
-          <path d="M24 6 H20 Q6 6 6 20 V44 Q6 58 20 58 H44 Q58 58 58 44 V20 Q58 6 44 6 H40" fill="none" stroke="url(#bg1)" stroke-width="3.5" stroke-linecap="round"/>
-          <path d="M17 47 L32 9 L47 47" fill="none" stroke="url(#bg1)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M25 33.5 H39" fill="none" stroke="url(#bg1)" stroke-width="4" stroke-linecap="round"/>
-          <circle cx="32" cy="3" r="2.6" fill="#22d3ee"/>
+        <svg class="brand-mark" viewBox="0 0 64 64" width="30" height="30" aria-hidden="true">
+          <path d="M24 6 H20 Q6 6 6 20 V44 Q6 58 20 58 H44 Q58 58 58 44 V20 Q58 6 44 6 H40" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+          <path d="M17 47 L32 9 L47 47" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M25 33.5 H39" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+          <circle class="mark-dot" cx="32" cy="3" r="2.6"/>
         </svg>
-        <span class="brand-name">Alpovk<em>Apps</em></span>
+        <span class="brand-name">Alpovk<i>Apps</i></span>
       </a>
 
       <ul class="nav-links" id="navLinks">
@@ -81,15 +64,17 @@
 
       <div class="nav-actions">
         <button class="theme-toggle" id="themeToggle" aria-label="Switch color theme" title="Switch theme">
-          <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <svg class="icon-sun" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
             <circle cx="12" cy="12" r="4.2"/>
             <path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5 5l1.6 1.6M17.4 17.4 19 19M19 5l-1.6 1.6M6.6 17.4 5 19"/>
           </svg>
-          <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg class="icon-moon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <path d="M20.4 14.2A8.5 8.5 0 1 1 9.8 3.6a7 7 0 1 0 10.6 10.6z"/>
           </svg>
         </button>
-        <a class="btn btn-primary btn-sm nav-cta" href="#contact" data-magnetic>Start a project</a>
+        <a class="link-arrow nav-cta" href="#contact" data-magnetic>Start a project
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        </a>
         <button class="nav-burger" id="navBurger" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
           <span></span><span></span>
         </button>
@@ -99,101 +84,112 @@
 
   <main id="main">
 
-    <!-- ░░ Hero ░░ -->
+    <!-- ░ Hero -->
     <section class="hero" id="top">
       <canvas class="hero-canvas" id="heroCanvas" aria-hidden="true"></canvas>
-      <div class="hero-orb hero-orb-1" data-parallax="0.18" aria-hidden="true"></div>
-      <div class="hero-orb hero-orb-2" data-parallax="-0.12" aria-hidden="true"></div>
-      <div class="hero-ring" data-parallax="0.08" aria-hidden="true"></div>
+      <div class="hero-ring" aria-hidden="true"></div>
 
       <div class="container hero-inner" id="heroInner">
-        <p class="hero-eyebrow anim-rise" style="--d:.05s">
-          <span class="pulse-dot" aria-hidden="true"></span>
-          AlpovkApps — the product studio of Alperen Karavelioglu
+        <p class="hero-kicker caps anim-rise" style="--d:.05s">
+          <span class="pulse" aria-hidden="true"></span>
+          AlpovkApps — Product studio of Alperen Karavelioglu
         </p>
 
-        <h1 class="hero-title">
-          <span class="anim-rise" style="--d:.15s">I build software</span><br/>
-          <span class="anim-rise" style="--d:.26s">that gets&nbsp;<span class="rotator" id="rotator">
-            <span class="rotator-word grad-text is-current">funded.</span>
-            <span class="rotator-word grad-text">shipped.</span>
-            <span class="rotator-word grad-text">used daily.</span>
-            <span class="rotator-word grad-text">acquired.</span>
-          </span></span>
+        <h1 class="hero-title" id="heroTitle">
+          <span class="line"><span class="line-inner" style="--li:0">Software that gets</span></span>
+          <span class="line"><span class="line-inner" style="--li:1"><span class="serif rotator" id="rotator">
+            <span class="rotator-word is-current">funded.</span>
+            <span class="rotator-word">shipped.</span>
+            <span class="rotator-word">used daily.</span>
+            <span class="rotator-word">acquired.</span>
+          </span></span></span>
         </h1>
 
-        <p class="hero-sub anim-rise" style="--d:.38s">
-          Senior software engineer, 5+ years deep in the trenches of startups —
-          turning risky ideas into production web, mobile and AI products.
-          From the first commit to the first paying customer. End to end.
-        </p>
-
-        <div class="hero-cta anim-rise" style="--d:.5s">
-          <a class="btn btn-primary" href="#contact" data-magnetic>
-            Start a project
-            <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
-          <a class="btn btn-ghost" href="#work" data-magnetic>Explore the work</a>
+        <div class="hero-row">
+          <p class="hero-sub anim-rise" style="--d:.45s">
+            Five years inside startups, turning risky ideas into production
+            web, mobile and AI products — from the first commit to the first
+            paying customer. End to end, no hand-offs.
+          </p>
+          <div class="hero-cta anim-rise" style="--d:.58s">
+            <a class="btn btn-solid" href="#contact" data-magnetic>
+              <span>Start a project</span>
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a class="btn btn-line" href="#work" data-magnetic>View work</a>
+          </div>
         </div>
 
-        <div class="hero-proof anim-rise" style="--d:.62s">
-          <span>Founding engineer @ Incompass Labs</span>
-          <span class="proof-sep" aria-hidden="true"></span>
-          <span>$2M raised</span>
-          <span class="proof-sep" aria-hidden="true"></span>
-          <span>8K+ active users</span>
-          <span class="proof-sep" aria-hidden="true"></span>
-          <span>1 product acquired</span>
+        <div class="hero-proof caps anim-rise" style="--d:.7s">
+          <span><i aria-hidden="true">◆</i> Founding engineer · Incompass Labs</span>
+          <span><i aria-hidden="true">◆</i> $2M raised</span>
+          <span><i aria-hidden="true">◆</i> 8,000+ active users</span>
+          <span><i aria-hidden="true">◆</i> 1 product acquired</span>
         </div>
       </div>
 
+      <svg class="hero-badge" viewBox="0 0 100 100" aria-hidden="true">
+        <defs><path id="circ" d="M50,50 m-38,0 a38,38 0 1,1 76,0 a38,38 0 1,1 -76,0"/></defs>
+        <text font-size="9.5" letter-spacing="2.6" fill="currentColor">
+          <textPath href="#circ">PRODUCT STUDIO — ALPOVKAPPS — EST. 2023 —</textPath>
+        </text>
+        <path class="badge-a" d="M50 38 L57 58 H43 Z"/>
+      </svg>
+
       <a class="scroll-cue" href="#stats" aria-label="Scroll down">
-        <span class="scroll-cue-track"><span class="scroll-cue-thumb"></span></span>
+        <span class="caps">Scroll</span>
+        <span class="scroll-cue-line"></span>
       </a>
     </section>
 
-    <!-- ░░ Stats ░░ -->
+    <!-- ░ Stats -->
     <section class="stats" id="stats">
-      <div class="container">
-        <div class="stats-grid">
-          <div class="stat" data-reveal>
-            <p class="stat-value"><span data-count-to="5">0</span><span class="stat-suffix">+</span></p>
-            <p class="stat-label">Years shipping production software</p>
-          </div>
-          <div class="stat" data-reveal style="--d:.08s">
-            <p class="stat-value"><span class="stat-suffix">$</span><span data-count-to="2">0</span><span class="stat-suffix">M</span></p>
-            <p class="stat-label">Raised by a product built from an empty repo</p>
-          </div>
-          <div class="stat" data-reveal style="--d:.16s">
-            <p class="stat-value"><span data-count-to="8">0</span><span class="stat-suffix">K+</span></p>
-            <p class="stat-label">Active users on systems I architected</p>
-          </div>
-          <div class="stat" data-reveal style="--d:.24s">
-            <p class="stat-value"><span data-count-to="6">0</span><span class="stat-suffix">&nbsp;/&nbsp;1</span></p>
-            <p class="stat-label">Products launched / acquired</p>
-          </div>
+      <div class="stats-grid">
+        <div class="stat" data-reveal>
+          <p class="stat-value"><span data-count-to="5">0</span><span class="stat-suffix">+</span></p>
+          <p class="stat-label">Years shipping production software</p>
+        </div>
+        <div class="stat" data-reveal style="--d:.08s">
+          <p class="stat-value"><span class="stat-suffix">$</span><span data-count-to="2">0</span><span class="stat-suffix">M</span></p>
+          <p class="stat-label">Raised by a product built from an empty repo</p>
+        </div>
+        <div class="stat" data-reveal style="--d:.16s">
+          <p class="stat-value"><span data-count-to="8">0</span><span class="stat-suffix">K+</span></p>
+          <p class="stat-label">Active users on systems I architected</p>
+        </div>
+        <div class="stat" data-reveal style="--d:.24s">
+          <p class="stat-value"><span data-count-to="6">0</span><span class="stat-suffix">/1</span></p>
+          <p class="stat-label">Products launched / acquired</p>
         </div>
       </div>
     </section>
 
-    <!-- ░░ Story ░░ -->
+    <!-- ░ Manifesto -->
+    <section class="manifesto section" id="manifesto">
+      <div class="container">
+        <p class="caps sec-kicker"><span class="sec-index">01</span> The position</p>
+        <p class="manifesto-text" id="manifestoText">
+          Most software dies between the deck and the launch. Agencies hand off,
+          freelancers disappear, momentum leaks away in meetings. I work differently —
+          one senior engineer who architects, designs, builds and ships the whole thing,
+          and stays until it earns. <em>Every product is a bet. I shorten the odds.</em>
+        </p>
+        <p class="manifesto-foot caps">Keep scrolling — the receipts are below</p>
+      </div>
+    </section>
+
+    <!-- ░ Story -->
     <section class="story section" id="story">
       <div class="container">
-        <div class="section-head" data-reveal>
-          <p class="section-kicker">The story</p>
-          <h2 class="section-title">Every product is a bet.<br/><span class="grad-text">I shorten the odds.</span></h2>
+        <div class="sec-head">
+          <p class="caps sec-kicker"><span class="sec-index">02</span> The story</p>
+          <h2 class="sec-title" data-split>From an empty repo to <em>$2M raised.</em></h2>
         </div>
 
-        <div class="story-layout">
-          <div class="story-side">
-            <div class="story-sticky">
-              <p class="story-counter"><span id="storyNum">01</span><span class="story-counter-total">/ 03</span></p>
-              <div class="story-progress"><span id="storyProgressBar"></span></div>
-            </div>
-          </div>
-
-          <div class="story-chapters">
-            <article class="story-chapter" data-chapter="01" data-reveal>
+        <div class="story-stack" id="storyStack">
+          <article class="story-card">
+            <p class="story-num" aria-hidden="true">01</p>
+            <div class="story-body">
               <h3 class="story-chapter-title">The blank repo</h3>
               <p>
                 March 2023. Incompass Labs had a peer-assessment algorithm born at Wharton,
@@ -204,9 +200,12 @@
                 No legacy code, no safety net. Just an idea that had to become
                 software people would trust with their organizations.
               </p>
-            </article>
+            </div>
+          </article>
 
-            <article class="story-chapter" data-chapter="02" data-reveal>
+          <article class="story-card">
+            <p class="story-num" aria-hidden="true">02</p>
+            <div class="story-body">
               <h3 class="story-chapter-title">The build</h3>
               <p>
                 Architecture first: a data-intensive React + TypeScript platform on Firebase
@@ -220,9 +219,12 @@
                 semantic search, turning thousands of feedback signals into answers
                 leaders can actually act on.
               </p>
-            </article>
+            </div>
+          </article>
 
-            <article class="story-chapter" data-chapter="03" data-reveal>
+          <article class="story-card">
+            <p class="story-num" aria-hidden="true">03</p>
+            <div class="story-body">
               <h3 class="story-chapter-title">The proof</h3>
               <p>
                 That empty repo is now a platform with 8,000+ active users, backed by
@@ -232,363 +234,341 @@
               </p>
               <p class="story-punch">
                 The pattern repeats: idea in, shipped product out.
-                <strong class="grad-text">Yours could be next.</strong>
+                <em>Yours could be next.</em>
               </p>
-            </article>
-          </div>
+            </div>
+          </article>
         </div>
       </div>
     </section>
 
-    <!-- ░░ Services ░░ -->
+    <!-- ░ Services -->
     <section class="services section" id="services">
       <div class="container">
-        <div class="section-head" data-reveal>
-          <p class="section-kicker">Services</p>
-          <h2 class="section-title">One studio.<br/><span class="grad-text">Full stack, full product.</span></h2>
-          <p class="section-sub">Strategy, architecture, code and launch — without the agency overhead or the hand-offs where details die.</p>
+        <div class="sec-head">
+          <p class="caps sec-kicker"><span class="sec-index">03</span> Services</p>
+          <h2 class="sec-title" data-split>One studio. <em>Full stack, full product.</em></h2>
+          <p class="sec-sub">Strategy, architecture, code and launch — without the agency overhead or the hand-offs where details die.</p>
         </div>
 
-        <div class="services-grid">
-          <article class="service-card" data-tilt data-reveal>
-            <div class="service-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4" width="19" height="15" rx="2.5"/><path d="M2.5 8.5h19M6.2 6.3h.01M8.8 6.3h.01"/><path d="m8.5 12.5 2 2-2 2M12.5 16.5h3.5"/></svg>
-            </div>
-            <h3>Web Platforms &amp; Dashboards</h3>
-            <p>Data-heavy SPAs, analytics dashboards and internal tools that stay fast at scale — with UIs polished enough to demo to investors.</p>
-            <ul class="service-tags"><li>React</li><li>TypeScript</li><li>Vite</li><li>Next.js</li></ul>
-          </article>
-
-          <article class="service-card" data-tilt data-reveal style="--d:.08s">
-            <div class="service-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M10.5 5h3M12 18.2h.01"/></svg>
-            </div>
-            <h3>Mobile Apps</h3>
-            <p>iOS and Android from a single codebase — designed, built and actually released. Multiple apps live on the App Store and Google Play.</p>
-            <ul class="service-tags"><li>React Native</li><li>App Store</li><li>Google Play</li></ul>
-          </article>
-
-          <article class="service-card" data-tilt data-reveal style="--d:.16s">
-            <div class="service-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5c-4.7 0-8.5 3.4-8.5 7.6 0 2.4 1.2 4.5 3.1 5.9V21l3.2-1.8c.7.15 1.45.23 2.2.23 4.7 0 8.5-3.4 8.5-7.6S16.7 3.5 12 3.5z"/><path d="M8.5 11h.01M12 11h.01M15.5 11h.01"/></svg>
-            </div>
-            <h3>AI &amp; LLM Products</h3>
-            <p>RAG pipelines, semantic search, MCP servers and AI agents — production AI features that survive real users, not just demos.</p>
-            <ul class="service-tags"><li>RAG</li><li>MCP</li><li>Agents</li><li>Prompting</li></ul>
-          </article>
-
-          <article class="service-card" data-tilt data-reveal style="--d:.24s">
-            <div class="service-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 14.5 5 19M14.5 9.5 19 5"/><circle cx="7.5" cy="7.5" r="3.2"/><circle cx="16.5" cy="16.5" r="3.2"/></svg>
-            </div>
-            <h3>Integrations, Cloud &amp; Auth</h3>
-            <p>The hard plumbing: HRIS integrations (Workday, BambooHR), Stripe payments, SSO with SAML &amp; Okta, webhooks, Slack apps, GCP architecture.</p>
-            <ul class="service-tags"><li>GCP</li><li>Firebase</li><li>Stripe</li><li>SAML / Okta</li></ul>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ░░ Work ░░ -->
-    <section class="work section" id="work">
-      <div class="container">
-        <div class="section-head" data-reveal>
-          <p class="section-kicker">Selected work</p>
-          <h2 class="section-title">Built from zero.<br/><span class="grad-text">Shipped for real.</span></h2>
-        </div>
-
-        <!-- Flagship -->
-        <article class="case-flagship" data-tilt data-tilt-soft data-reveal>
-          <div class="case-flagship-info">
-            <div class="case-badges">
-              <span class="badge badge-role">Founding engineer</span>
-              <span class="badge badge-metric">$2M raised</span>
-              <span class="badge badge-metric">8K+ users</span>
-            </div>
-            <h3 class="case-flagship-title">Incompass Labs</h3>
-            <p class="case-flagship-desc">
-              AI-native talent intelligence &amp; performance platform, built on a
-              peer-assessment engine from the University of Pennsylvania. I joined
-              before the first line of code and architected the entire product —
-              the data-intensive SPA, the HRIS integration layer, enterprise SSO,
-              payments, and an LLM-powered knowledge engine with RAG, semantic
-              search and an MCP server.
+        <div class="services-list">
+          <article class="service-row" data-reveal>
+            <span class="service-num" aria-hidden="true">01</span>
+            <h3 class="service-name">Web platforms &amp; dashboards</h3>
+            <p class="service-desc">Data-heavy SPAs, analytics dashboards and internal tools that stay fast at scale — polished enough to demo to investors.
+              <span class="tags">React · TypeScript · Vite · Next.js</span>
             </p>
-            <ul class="case-tags">
-              <li>React</li><li>TypeScript</li><li>Firebase</li><li>GCP</li><li>RAG</li><li>MCP</li><li>SAML / Okta</li><li>Stripe</li>
-            </ul>
-            <a class="case-link" href="https://incompass.io" target="_blank" rel="noopener">
-              incompass.io
-              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
-            </a>
+            <span class="service-arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
+          </article>
+
+          <article class="service-row" data-reveal>
+            <span class="service-num" aria-hidden="true">02</span>
+            <h3 class="service-name">Mobile apps</h3>
+            <p class="service-desc">iOS and Android from a single codebase — designed, built and actually released. Multiple apps live on both stores.
+              <span class="tags">React Native · App Store · Google Play</span>
+            </p>
+            <span class="service-arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
+          </article>
+
+          <article class="service-row" data-reveal>
+            <span class="service-num" aria-hidden="true">03</span>
+            <h3 class="service-name">AI &amp; LLM products</h3>
+            <p class="service-desc">RAG pipelines, semantic search, MCP servers and AI agents — production AI that survives real users, not just demos.
+              <span class="tags">RAG · MCP · Agents · Prompt engineering</span>
+            </p>
+            <span class="service-arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
+          </article>
+
+          <article class="service-row" data-reveal>
+            <span class="service-num" aria-hidden="true">04</span>
+            <h3 class="service-name">Integrations, cloud &amp; auth</h3>
+            <p class="service-desc">The hard plumbing: HRIS integrations, Stripe payments, SSO with SAML &amp; Okta, webhooks, Slack apps, GCP architecture.
+              <span class="tags">GCP · Firebase · Stripe · SAML / Okta</span>
+            </p>
+            <span class="service-arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ░ Work — pinned horizontal gallery -->
+    <section class="works" id="work" data-cursor-zone="Scroll">
+      <div class="works-pin" id="worksPin">
+        <div class="works-track" id="worksTrack">
+
+          <div class="works-intro">
+            <div class="sec-head">
+              <p class="caps sec-kicker"><span class="sec-index">04</span> Selected work</p>
+              <h2 class="sec-title">Built from zero. <em>Shipped for real.</em></h2>
+            </div>
+            <p class="works-count">
+              <span id="worksIdx">01</span>
+              <span class="bar"><span id="worksBar"></span></span>
+              <span>06</span>
+            </p>
           </div>
-          <div class="case-flagship-visual" aria-hidden="true">
-            <div class="mock-window">
-              <div class="mock-bar"><i></i><i></i><i></i></div>
-              <div class="mock-body">
-                <div class="mock-row"><span class="mock-chip"></span><span class="mock-chip mock-chip-sm"></span></div>
-                <div class="mock-chart">
-                  <i style="--h:42%"></i><i style="--h:68%"></i><i style="--h:35%"></i><i style="--h:82%"></i><i style="--h:58%"></i><i style="--h:91%"></i><i style="--h:73%"></i>
-                </div>
-                <div class="mock-lines"><i></i><i></i><i style="width:62%"></i></div>
+
+          <article class="work-card is-flagship" data-tilt>
+            <div class="work-card-head">
+              <span class="work-idx" aria-hidden="true">01</span>
+              <span class="work-tag is-gold">Founding engineer</span>
+            </div>
+            <h3 class="work-name">Incompass Labs</h3>
+            <p class="work-desc">
+              AI-native talent intelligence platform built on a Wharton peer-assessment
+              engine. Architected the entire product — data-intensive SPA, HRIS integration
+              layer, enterprise SSO, payments, and an LLM knowledge engine with RAG,
+              semantic search and an MCP server.
+            </p>
+            <div class="work-media" aria-hidden="true">
+              <div class="media-bars">
+                <i style="--h:38%;--bi:0"></i><i style="--h:62%;--bi:1"></i><i style="--h:30%;--bi:2"></i><i style="--h:78%;--bi:3"></i><i style="--h:52%;--bi:4"></i><i style="--h:92%;--bi:5"></i><i style="--h:68%;--bi:6"></i>
               </div>
+              <div class="media-rows"><i></i><i></i></div>
+              <div class="media-meta"><span><b>$2M</b> raised</span><span><b>8K+</b> users</span><span>2023 — now</span></div>
             </div>
-            <div class="mock-float mock-float-1"><span class="mock-spark" aria-hidden="true">▲</span> +8,000 users</div>
-            <div class="mock-float mock-float-2">RAG · MCP · LLMs</div>
-          </div>
-        </article>
+            <div class="work-foot">
+              <span class="work-stack">React · TS · GCP · RAG · MCP · SAML</span>
+              <a class="link-arrow" href="https://incompass.io" target="_blank" rel="noopener" data-cursor="Visit">incompass.io
+                <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+              </a>
+            </div>
+          </article>
 
-        <!-- Grid -->
-        <div class="work-grid">
-          <article class="work-card" data-tilt data-reveal>
-            <div class="work-card-top">
-              <span class="work-num">02</span>
-              <span class="badge badge-gold">Acquired</span>
+          <article class="work-card" data-tilt>
+            <div class="work-card-head">
+              <span class="work-idx" aria-hidden="true">02</span>
+              <span class="work-tag is-gold">Acquired</span>
             </div>
-            <h3>Drive for Photographers</h3>
-            <p>Shareable, high-quality client galleries with uploads faster than Google Drive. Built it, grew it, sold it.</p>
-            <ul class="case-tags"><li>Product</li><li>Storage</li><li>Exit</li></ul>
-            <a class="case-link" href="https://coreyfaderphoto.com" target="_blank" rel="noopener">coreyfaderphoto.com
-              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+            <h3 class="work-name">Drive for Photographers</h3>
+            <p class="work-desc">Shareable, high-quality client galleries with uploads faster than Google Drive. Built it, grew it, sold it.</p>
+            <div class="work-foot">
+              <span class="work-stack">Product · Storage · Exit</span>
+              <a class="link-arrow" href="https://coreyfaderphoto.com" target="_blank" rel="noopener" data-cursor="Visit">Visit
+                <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="work-card" data-tilt>
+            <div class="work-card-head">
+              <span class="work-idx" aria-hidden="true">03</span>
+              <span class="work-tag">App Store</span>
+            </div>
+            <h3 class="work-name">ShopTheRoom</h3>
+            <p class="work-desc">Point your camera at an interior, get the products. AI-powered shopping from interior design, live on the App Store.</p>
+            <div class="work-foot">
+              <span class="work-stack">AI Vision · React Native · iOS</span>
+              <a class="link-arrow" href="https://getshoptheroom.app" target="_blank" rel="noopener" data-cursor="Visit">Visit
+                <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="work-card" data-tilt>
+            <div class="work-card-head">
+              <span class="work-idx" aria-hidden="true">04</span>
+              <span class="work-tag">API + SDKs</span>
+            </div>
+            <h3 class="work-name">DATASHOWS.AI</h3>
+            <p class="work-desc">One API call in, publication-ready data visuals out. AI-generated charts with client and server SDKs for developers.</p>
+            <div class="work-foot">
+              <span class="work-stack">AI · API design · SDK</span>
+              <a class="link-arrow" href="https://datashows.ai" target="_blank" rel="noopener" data-cursor="Visit">Visit
+                <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="work-card" data-tilt>
+            <div class="work-card-head">
+              <span class="work-idx" aria-hidden="true">05</span>
+              <span class="work-tag">Open source</span>
+            </div>
+            <h3 class="work-name">EasyPDF</h3>
+            <p class="work-desc">An open-source npm package that turns React components into pixel-perfect PDFs. Built for developers, free forever.</p>
+            <div class="work-foot">
+              <span class="work-stack">npm · React · OSS</span>
+              <a class="link-arrow" href="https://easypdf.vercel.app" target="_blank" rel="noopener" data-cursor="Visit">Visit
+                <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="work-card" data-tilt>
+            <div class="work-card-head">
+              <span class="work-idx" aria-hidden="true">06</span>
+              <span class="work-tag">FinTech</span>
+            </div>
+            <h3 class="work-name">EasyQuant</h3>
+            <p class="work-desc">A mobile app that takes beginner investors from zero to their first investment in minutes. Released on both stores.</p>
+            <div class="work-foot">
+              <span class="work-stack">React Native · Redux · iOS / Android</span>
+              <span class="work-stack">Play + App Store</span>
+            </div>
+          </article>
+
+          <article class="work-card work-card-cta">
+            <h3 class="work-name">Your product, <em>next.</em></h3>
+            <p class="work-desc">This slot is reserved for the thing you haven't built yet.</p>
+            <a class="btn btn-solid" href="#contact" data-magnetic>
+              <span>Claim it</span>
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </a>
           </article>
 
-          <article class="work-card" data-tilt data-reveal style="--d:.07s">
-            <div class="work-card-top">
-              <span class="work-num">03</span>
-              <span class="badge">App Store</span>
-            </div>
-            <h3>ShopTheRoom</h3>
-            <p>Point your camera at an interior, get the products. AI-powered shopping from interior design, live on the App Store.</p>
-            <ul class="case-tags"><li>AI / Vision</li><li>React Native</li><li>iOS</li></ul>
-            <a class="case-link" href="https://getshoptheroom.app" target="_blank" rel="noopener">getshoptheroom.app
-              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
-            </a>
-          </article>
-
-          <article class="work-card" data-tilt data-reveal style="--d:.14s">
-            <div class="work-card-top">
-              <span class="work-num">04</span>
-              <span class="badge">API + SDKs</span>
-            </div>
-            <h3>DATASHOWS.AI</h3>
-            <p>One API call in, beautiful data visuals out. AI-generated charts with client and server SDKs for developers.</p>
-            <ul class="case-tags"><li>AI</li><li>API design</li><li>SDK</li></ul>
-            <a class="case-link" href="https://datashows.ai" target="_blank" rel="noopener">datashows.ai
-              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
-            </a>
-          </article>
-
-          <article class="work-card" data-tilt data-reveal style="--d:.21s">
-            <div class="work-card-top">
-              <span class="work-num">05</span>
-              <span class="badge">Open source</span>
-            </div>
-            <h3>EasyPDF</h3>
-            <p>An open-source npm package that turns React components into pixel-perfect PDFs. Built for developers, free forever.</p>
-            <ul class="case-tags"><li>npm</li><li>React</li><li>OSS</li></ul>
-            <a class="case-link" href="https://easypdf.vercel.app" target="_blank" rel="noopener">easypdf.vercel.app
-              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
-            </a>
-          </article>
-
-          <article class="work-card" data-tilt data-reveal style="--d:.28s">
-            <div class="work-card-top">
-              <span class="work-num">06</span>
-              <span class="badge">FinTech</span>
-            </div>
-            <h3>EasyQuant</h3>
-            <p>A mobile app that gets beginner investors from zero to their first investment in minutes. Released on both stores.</p>
-            <ul class="case-tags"><li>React Native</li><li>Redux</li><li>iOS / Android</li></ul>
-            <span class="case-link case-link-static">Google Play &amp; App Store</span>
-          </article>
-
-          <article class="work-card work-card-cta" data-tilt data-reveal style="--d:.35s">
-            <div class="work-card-top"><span class="work-num">07</span></div>
-            <h3>Your product</h3>
-            <p>This slot is reserved for the thing you haven't built yet. Let's change that.</p>
-            <a class="btn btn-primary btn-sm" href="#contact" data-magnetic>Claim it
-              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            </a>
-          </article>
         </div>
       </div>
     </section>
 
-    <!-- ░░ Marquee ░░ -->
-    <section class="marquee" aria-label="Technologies">
-      <div class="marquee-track" id="marqueeTrack">
-        <div class="marquee-group">
-          <span>React</span><i>◆</i><span>TypeScript</span><i>◆</i><span>Node.js</span><i>◆</i><span>React Native</span><i>◆</i><span>Next.js</span><i>◆</i><span>Vite</span><i>◆</i><span>Firebase</span><i>◆</i><span>Google Cloud</span><i>◆</i><span>LLMs</span><i>◆</i><span>RAG</span><i>◆</i><span>MCP Servers</span><i>◆</i><span>Semantic Search</span><i>◆</i><span>Stripe</span><i>◆</i><span>OAuth</span><i>◆</i><span>SAML / Okta</span><i>◆</i><span>Playwright</span><i>◆</i><span>Vitest</span><i>◆</i><span>Python</span><i>◆</i>
-        </div>
-      </div>
-    </section>
-
-    <!-- ░░ Process ░░ -->
+    <!-- ░ Process -->
     <section class="process section" id="process">
       <div class="container">
-        <div class="section-head" data-reveal>
-          <p class="section-kicker">Process</p>
-          <h2 class="section-title">No mystery.<br/><span class="grad-text">Just momentum.</span></h2>
+        <div class="sec-head">
+          <p class="caps sec-kicker"><span class="sec-index">05</span> Process</p>
+          <h2 class="sec-title" data-split>No mystery. <em>Just momentum.</em></h2>
         </div>
 
-        <div class="process-track">
-          <div class="process-line" aria-hidden="true"><span id="processLineFill"></span></div>
-          <ol class="process-steps">
-            <li class="process-step" data-reveal>
-              <span class="process-dot" aria-hidden="true"></span>
-              <span class="process-num">01</span>
-              <h3>Understand</h3>
-              <p>Your goals, your users, your constraints. The right product starts as the right questions.</p>
-            </li>
-            <li class="process-step" data-reveal style="--d:.08s">
-              <span class="process-dot" aria-hidden="true"></span>
-              <span class="process-num">02</span>
-              <h3>Architect</h3>
-              <p>Foundations that scale — stack, data model, integrations — chosen for where you're going, not just where you are.</p>
-            </li>
-            <li class="process-step" data-reveal style="--d:.16s">
-              <span class="process-dot" aria-hidden="true"></span>
-              <span class="process-num">03</span>
-              <h3>Build</h3>
-              <p>Tight loops, working software every week. You watch the product grow instead of waiting for a reveal.</p>
-            </li>
-            <li class="process-step" data-reveal style="--d:.24s">
-              <span class="process-dot" aria-hidden="true"></span>
-              <span class="process-num">04</span>
-              <h3>Ship</h3>
-              <p>App stores, clouds, CI/CD, monitoring. Launch day is an engineering task, not a leap of faith.</p>
-            </li>
-            <li class="process-step" data-reveal style="--d:.32s">
-              <span class="process-dot" aria-hidden="true"></span>
-              <span class="process-num">05</span>
-              <h3>Scale</h3>
-              <p>Real usage in, sharp iterations out. The products I build are made to grow — some get funded, one got acquired.</p>
-            </li>
-          </ol>
-        </div>
+        <ol class="process-grid">
+          <li class="process-step" data-reveal>
+            <span class="process-num" aria-hidden="true">01</span>
+            <h3>Understand</h3>
+            <p>Your goals, your users, your constraints. The right product starts as the right questions.</p>
+          </li>
+          <li class="process-step" data-reveal style="--d:.07s">
+            <span class="process-num" aria-hidden="true">02</span>
+            <h3>Architect</h3>
+            <p>Foundations that scale — stack, data model, integrations — chosen for where you're going.</p>
+          </li>
+          <li class="process-step" data-reveal style="--d:.14s">
+            <span class="process-num" aria-hidden="true">03</span>
+            <h3>Build</h3>
+            <p>Tight loops, working software every week. You watch it grow instead of waiting for a reveal.</p>
+          </li>
+          <li class="process-step" data-reveal style="--d:.21s">
+            <span class="process-num" aria-hidden="true">04</span>
+            <h3>Ship</h3>
+            <p>App stores, clouds, CI/CD, monitoring. Launch day is an engineering task, not a leap of faith.</p>
+          </li>
+          <li class="process-step" data-reveal style="--d:.28s">
+            <span class="process-num" aria-hidden="true">05</span>
+            <h3>Scale</h3>
+            <p>Real usage in, sharp iterations out. Some products get funded — one got acquired.</p>
+          </li>
+        </ol>
       </div>
     </section>
 
-    <!-- ░░ Journey ░░ -->
+    <!-- ░ Journey -->
     <section class="journey section" id="journey">
       <div class="container">
-        <div class="section-head" data-reveal>
-          <p class="section-kicker">The journey</p>
-          <h2 class="section-title">Five years.<br/><span class="grad-text">Zero shortcuts.</span></h2>
+        <div class="sec-head">
+          <p class="caps sec-kicker"><span class="sec-index">06</span> The journey</p>
+          <h2 class="sec-title" data-split>Five years. <em>Zero shortcuts.</em></h2>
         </div>
 
-        <div class="timeline">
-          <div class="timeline-line" aria-hidden="true"><span id="timelineFill"></span></div>
-
-          <article class="timeline-item" data-reveal>
-            <span class="timeline-dot" aria-hidden="true"></span>
-            <div class="timeline-card" data-tilt data-tilt-soft>
-              <p class="timeline-when">2023 — Present</p>
-              <h3>Software Engineer · Incompass Labs</h3>
-              <p class="timeline-where">Delaware, US · Remote</p>
-              <p>Founding-team engineer on an AI-native talent intelligence platform. Architecture, HRIS integrations, enterprise auth, payments, and LLM features — from empty repo to $2M raised and 8K+ users.</p>
-            </div>
+        <div class="journey-list">
+          <article class="journey-row" data-reveal>
+            <p class="journey-when">2023 — Now</p>
+            <h3 class="journey-role">Software Engineer · Incompass Labs
+              <small>Founding-team engineer — empty repo to $2M raised and 8K+ users. Architecture, HRIS integrations, enterprise auth, payments, LLM features.</small>
+            </h3>
+            <p class="journey-where">Delaware, US — Remote</p>
           </article>
 
-          <article class="timeline-item" data-reveal>
-            <span class="timeline-dot" aria-hidden="true"></span>
-            <div class="timeline-card" data-tilt data-tilt-soft>
-              <p class="timeline-when">2022 — 2023</p>
-              <h3>Software Engineer · EasyQuant</h3>
-              <p class="timeline-where">Berlin, DE · Remote</p>
-              <p>FinTech mobile app for beginner investors, shipped to Google Play and the App Store. React Native, Redux, data pipelines from scraped market sources.</p>
-            </div>
+          <article class="journey-row" data-reveal>
+            <p class="journey-when">2022 — 23</p>
+            <h3 class="journey-role">Software Engineer · EasyQuant
+              <small>FinTech investing app shipped to Google Play and the App Store. React Native, Redux, market-data pipelines.</small>
+            </h3>
+            <p class="journey-where">Berlin, DE — Remote</p>
           </article>
 
-          <article class="timeline-item" data-reveal>
-            <span class="timeline-dot" aria-hidden="true"></span>
-            <div class="timeline-card" data-tilt data-tilt-soft>
-              <p class="timeline-when">2021</p>
-              <h3>Full-Stack Developer · Siemens</h3>
-              <p class="timeline-where">Kocaeli, TR · On-site</p>
-              <p>Internal web platform for a manufacturing site — and a first taste of engineering at enterprise scale.</p>
-            </div>
+          <article class="journey-row" data-reveal>
+            <p class="journey-when">2021</p>
+            <h3 class="journey-role">Full-Stack Developer · Siemens
+              <small>Internal web platform for a manufacturing site — engineering at enterprise scale.</small>
+            </h3>
+            <p class="journey-where">Kocaeli, TR — On-site</p>
           </article>
 
-          <article class="timeline-item" data-reveal>
-            <span class="timeline-dot" aria-hidden="true"></span>
-            <div class="timeline-card" data-tilt data-tilt-soft>
-              <p class="timeline-when">2018 — 2023</p>
-              <h3>B.Sc. Electrical Engineering · Kocaeli University</h3>
-              <p class="timeline-where">Kocaeli, TR</p>
-              <p>Engineering fundamentals — algorithms, embedded systems, circuits — plus the discipline of thinking in systems.</p>
-            </div>
+          <article class="journey-row" data-reveal>
+            <p class="journey-when">2018 — 23</p>
+            <h3 class="journey-role">B.Sc. Electrical Engineering · Kocaeli University
+              <small>Algorithms, embedded systems, circuits — and the discipline of thinking in systems.</small>
+            </h3>
+            <p class="journey-where">Kocaeli, TR</p>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- ░░ Contact ░░ -->
-    <section class="contact section" id="contact">
-      <div class="contact-glow" aria-hidden="true" data-parallax="0.06"></div>
+    <!-- ░ Tech strip -->
+    <aside class="tech-strip" aria-label="Technologies">
       <div class="container">
-        <div class="contact-card" data-reveal>
-          <svg class="contact-mark" viewBox="0 0 64 64" width="56" height="56" aria-hidden="true">
-            <defs>
-              <linearGradient id="cg1" x1="0" y1="64" x2="64" y2="0" gradientUnits="userSpaceOnUse">
-                <stop offset="0" stop-color="#aef72e"/><stop offset=".55" stop-color="#3ddc97"/><stop offset="1" stop-color="#22d3ee"/>
-              </linearGradient>
-            </defs>
-            <path d="M24 6 H20 Q6 6 6 20 V44 Q6 58 20 58 H44 Q58 58 58 44 V20 Q58 6 44 6 H40" fill="none" stroke="url(#cg1)" stroke-width="3.5" stroke-linecap="round"/>
-            <path d="M17 47 L32 9 L47 47" fill="none" stroke="url(#cg1)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M25 33.5 H39" fill="none" stroke="url(#cg1)" stroke-width="4" stroke-linecap="round"/>
-            <circle cx="32" cy="3" r="2.6" fill="#22d3ee"/>
-          </svg>
+        <span class="tech-item">React</span><span class="tech-sep" aria-hidden="true">◆</span><span class="tech-item">TypeScript</span><span class="tech-sep" aria-hidden="true">◆</span><span class="tech-item">Node.js</span><span class="tech-sep" aria-hidden="true">◆</span><span class="tech-item">React Native</span><span class="tech-sep" aria-hidden="true">◆</span><span class="tech-item">Next.js</span><span class="tech-sep" aria-hidden="true">◆</span><span class="tech-item">Vite</span><span class="tech-sep" aria-hidden="true">◆</span><span class="tech-item">Firebase</span><span class="tech-sep" aria-hidden="true">◆</span><span class="tech-item">Google Cloud</span><span class="tech-sep" aria-hidden="true">◆</span><span class="tech-item">LLMs</span><span class="tech-sep" aria-hidden="true">◆</span><span class="tech-item">RAG</span><span class="tech-sep" aria-hidden="true">◆</span><span class="tech-item">MCP</span><span class="tech-sep" aria-hidden="true">◆</span><span class="tech-item">Stripe</span><span class="tech-sep" aria-hidden="true">◆</span><span class="tech-item">OAuth</span><span class="tech-sep" aria-hidden="true">◆</span><span class="tech-item">SAML / Okta</span><span class="tech-sep" aria-hidden="true">◆</span><span class="tech-item">Playwright</span><span class="tech-sep" aria-hidden="true">◆</span><span class="tech-item">Vitest</span><span class="tech-sep" aria-hidden="true">◆</span><span class="tech-item">Python</span>
+      </div>
+    </aside>
 
-          <h2 class="contact-title">Got an idea<br/>worth <span class="grad-text">shipping?</span></h2>
-          <p class="contact-sub">
-            Tell me what you're building — a platform, an app, an AI product.
-            I'll tell you exactly how we get it into users' hands.
-          </p>
+    <!-- ░ Big marquee -->
+    <div class="marquee-big" aria-hidden="true">
+      <div class="marquee-big-track" id="marqueeBig">
+        <div class="marquee-big-group">
+          <span>Web</span><span class="fill">Mobile</span><span>AI</span><span><em>—</em></span><span class="fill">AlpovkApps</span><span>Studio</span><span><em>—</em></span>
+        </div>
+        <div class="marquee-big-group">
+          <span>Web</span><span class="fill">Mobile</span><span>AI</span><span><em>—</em></span><span class="fill">AlpovkApps</span><span>Studio</span><span><em>—</em></span>
+        </div>
+      </div>
+    </div>
 
-          <div class="contact-actions">
-            <a class="btn btn-primary btn-lg" href="mailto:karavelx@gmail.com?subject=Project%20inquiry%20—%20AlpovkApps" data-magnetic>
-              karavelx@gmail.com
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.5 7 8.5 6 8.5-6"/></svg>
-            </a>
-            <button class="btn btn-ghost btn-lg" id="copyEmail" data-magnetic aria-label="Copy email address">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2.5"/><path d="M5 15H4.5A1.5 1.5 0 0 1 3 13.5v-9A1.5 1.5 0 0 1 4.5 3h9A1.5 1.5 0 0 1 15 4.5V5"/></svg>
-              Copy email
-            </button>
-          </div>
+    <!-- ░ Contact -->
+    <section class="contact section" id="contact">
+      <div class="container">
+        <p class="caps sec-kicker"><span class="sec-index">07</span> Contact</p>
+        <h2 class="contact-title" data-split>Got an idea worth <em>shipping?</em></h2>
 
-          <div class="contact-meta">
-            <a href="https://www.linkedin.com/in/alpovka" target="_blank" rel="noopener" class="contact-social">LinkedIn</a>
-            <span class="proof-sep" aria-hidden="true"></span>
-            <a href="https://www.github.com/Alpovka" target="_blank" rel="noopener" class="contact-social">GitHub</a>
-            <span class="proof-sep" aria-hidden="true"></span>
-            <span>Istanbul · working worldwide</span>
-          </div>
+        <a class="contact-email" href="mailto:karavelx@gmail.com?subject=Project%20inquiry%20—%20AlpovkApps" data-cursor="Write">
+          karavelx@gmail.com
+          <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        </a>
+
+        <div class="contact-meta">
+          <button class="contact-copy" id="copyEmail">Copy email</button>
+          <a class="contact-social" href="https://www.linkedin.com/in/alpovka" target="_blank" rel="noopener">LinkedIn
+            <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
+          <a class="contact-social" href="https://www.github.com/Alpovka" target="_blank" rel="noopener">GitHub
+            <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
+          <span class="caps">Istanbul — working worldwide</span>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- ░░ Footer ░░ -->
+  <!-- ░ Footer -->
   <footer class="footer">
     <div class="container footer-inner">
-      <a class="brand brand-footer" href="#top" aria-label="Back to top">
-        <svg class="brand-mark" viewBox="0 0 64 64" width="26" height="26" aria-hidden="true">
-          <defs>
-            <linearGradient id="fg1" x1="0" y1="64" x2="64" y2="0" gradientUnits="userSpaceOnUse">
-              <stop offset="0" stop-color="#aef72e"/><stop offset=".55" stop-color="#3ddc97"/><stop offset="1" stop-color="#22d3ee"/>
-            </linearGradient>
-          </defs>
-          <path d="M24 6 H20 Q6 6 6 20 V44 Q6 58 20 58 H44 Q58 58 58 44 V20 Q58 6 44 6 H40" fill="none" stroke="url(#fg1)" stroke-width="3.5" stroke-linecap="round"/>
-          <path d="M17 47 L32 9 L47 47" fill="none" stroke="url(#fg1)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M25 33.5 H39" fill="none" stroke="url(#fg1)" stroke-width="4" stroke-linecap="round"/>
-          <circle cx="32" cy="3" r="2.6" fill="#22d3ee"/>
+      <a class="brand" href="#top" aria-label="Back to top">
+        <svg class="brand-mark" viewBox="0 0 64 64" width="22" height="22" aria-hidden="true">
+          <path d="M24 6 H20 Q6 6 6 20 V44 Q6 58 20 58 H44 Q58 58 58 44 V20 Q58 6 44 6 H40" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+          <path d="M17 47 L32 9 L47 47" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M25 33.5 H39" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+          <circle class="mark-dot" cx="32" cy="3" r="2.6"/>
         </svg>
-        <span class="brand-name">Alpovk<em>Apps</em></span>
+        <span class="brand-name">Alpovk<i>Apps</i></span>
       </a>
-      <p class="footer-note">Designed &amp; built from scratch by Alperen Karavelioglu — no templates, no page builders.</p>
-      <p class="footer-copy">© <span id="year">2026</span> AlpovkApps</p>
+      <p>Designed &amp; built from scratch — no templates</p>
+      <p>© <span id="year">2026</span> — All rights reserved</p>
     </div>
   </footer>
 
