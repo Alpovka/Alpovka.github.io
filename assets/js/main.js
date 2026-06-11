@@ -19,7 +19,7 @@
 
   const applyTheme = (theme) => {
     doc.dataset.theme = theme;
-    if (themeMeta) themeMeta.content = theme === "dark" ? "#07070d" : "#f7f7fc";
+    if (themeMeta) themeMeta.content = theme === "dark" ? "#07070d" : "#f7f9f6";
   };
 
   // Dark is the brand default; only an explicit visitor choice overrides it.
@@ -325,7 +325,7 @@
 
   /* ---------------- Hero particle field ---------------- */
   const canvas = document.getElementById("heroCanvas");
-  let particleRGB = "124, 108, 255";
+  let particleRGB = "61, 220, 151";
 
   function refreshParticleColor() {
     particleRGB = getComputedStyle(doc).getPropertyValue("--particle").trim() || particleRGB;
