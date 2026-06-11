@@ -37,7 +37,15 @@
 
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <div class="cursor" id="cursor" aria-hidden="true"><span class="cursor-label" id="cursorLabel"></span></div>
+  <div class="cursor" id="cursor" aria-hidden="true">
+    <svg class="cursor-mark" viewBox="0 0 64 64" aria-hidden="true">
+      <path d="M24 6 H20 Q6 6 6 20 V44 Q6 58 20 58 H44 Q58 58 58 44 V20 Q58 6 44 6 H40" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+      <path d="M17 47 L32 9 L47 47" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M25 33.5 H39" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+      <circle class="cm-dot" cx="32" cy="3" r="2.6"/>
+    </svg>
+    <span class="cursor-label" id="cursorLabel"></span>
+  </div>
   <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
   <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
@@ -87,7 +95,12 @@
     <!-- ░ Hero -->
     <section class="hero" id="top">
       <canvas class="hero-canvas" id="heroCanvas" aria-hidden="true"></canvas>
-      <div class="hero-ring" aria-hidden="true"></div>
+      <svg class="hero-mark" viewBox="0 0 64 64" aria-hidden="true">
+        <path class="hm-frame" d="M24 6 H20 Q6 6 6 20 V44 Q6 58 20 58 H44 Q58 58 58 44 V20 Q58 6 44 6 H40" fill="none" stroke="currentColor" stroke-width="0.35" stroke-linecap="round"/>
+        <path class="hm-a" d="M17 47 L32 9 L47 47" fill="none" stroke="currentColor" stroke-width="0.45" stroke-linecap="round" stroke-linejoin="round"/>
+        <path class="hm-bar" d="M25 33.5 H39" stroke-width="0.4" stroke-linecap="round"/>
+        <circle class="hm-dot" cx="32" cy="3" r="0.8"/>
+      </svg>
 
       <div class="container hero-inner" id="heroInner">
         <p class="hero-kicker caps anim-rise" style="--d:.05s">
@@ -252,7 +265,7 @@
         </div>
 
         <div class="services-list">
-          <article class="service-row" data-reveal>
+          <a class="service-row" href="#contact" data-reveal data-cursor="Start">
             <span class="service-num" aria-hidden="true">01</span>
             <h3 class="service-name">Web platforms &amp; dashboards</h3>
             <p class="service-desc">Data-heavy SPAs, analytics dashboards and internal tools that stay fast at scale — polished enough to demo to investors.
@@ -261,9 +274,9 @@
             <span class="service-arrow" aria-hidden="true">
               <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </span>
-          </article>
+          </a>
 
-          <article class="service-row" data-reveal>
+          <a class="service-row" href="#contact" data-reveal data-cursor="Start">
             <span class="service-num" aria-hidden="true">02</span>
             <h3 class="service-name">Mobile apps</h3>
             <p class="service-desc">iOS and Android from a single codebase — designed, built and actually released. Multiple apps live on both stores.
@@ -272,9 +285,9 @@
             <span class="service-arrow" aria-hidden="true">
               <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </span>
-          </article>
+          </a>
 
-          <article class="service-row" data-reveal>
+          <a class="service-row" href="#contact" data-reveal data-cursor="Start">
             <span class="service-num" aria-hidden="true">03</span>
             <h3 class="service-name">AI &amp; LLM products</h3>
             <p class="service-desc">RAG pipelines, semantic search, MCP servers and AI agents — production AI that survives real users, not just demos.
@@ -283,9 +296,9 @@
             <span class="service-arrow" aria-hidden="true">
               <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </span>
-          </article>
+          </a>
 
-          <article class="service-row" data-reveal>
+          <a class="service-row" href="#contact" data-reveal data-cursor="Start">
             <span class="service-num" aria-hidden="true">04</span>
             <h3 class="service-name">Integrations, cloud &amp; auth</h3>
             <p class="service-desc">The hard plumbing: HRIS integrations, Stripe payments, SSO with SAML &amp; Okta, webhooks, Slack apps, GCP architecture.
@@ -294,7 +307,7 @@
             <span class="service-arrow" aria-hidden="true">
               <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </span>
-          </article>
+          </a>
         </div>
       </div>
     </section>
