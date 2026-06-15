@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AlpovkApps — Product studio of Alperen Karavelioglu</title>
-  <meta name="description" content="AlpovkApps is the independent product studio of Alperen Karavelioglu — a senior software engineer who takes web, mobile and AI products from first commit to funded, shipped and acquired." />
+  <title>AlpovkApps — Software studio of Alperen Karavelioglu</title>
+  <meta name="description" content="AlpovkApps is the independent software studio of Alperen Karavelioglu — a senior software engineer who takes web, mobile and AI products from first commit to funded, shipped and acquired." />
   <meta name="author" content="Alperen Karavelioglu" />
   <meta name="theme-color" content="#0b0b0c" />
 
   <meta property="og:type" content="website" />
   <meta property="og:title" content="AlpovkApps — Software that gets funded, shipped and acquired" />
-  <meta property="og:description" content="The product studio of Alperen Karavelioglu. Web platforms, mobile apps and AI products — built from zero to launch." />
+  <meta property="og:description" content="The software studio of Alperen Karavelioglu. Web platforms, mobile apps and AI products — built from zero to launch." />
   <meta property="og:url" content="https://alpovka.github.io/" />
   <meta name="twitter:card" content="summary" />
 
@@ -22,6 +22,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="assets/css/style.css" />
+
+  <!-- Three.js for the WebGL hero (no build step) -->
+  <link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js" />
+  <script type="importmap">
+  { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js" } }
+  </script>
 </head>
 <body>
 
@@ -105,7 +111,7 @@
       <div class="container hero-inner" id="heroInner">
         <p class="hero-kicker caps anim-rise" style="--d:.05s">
           <span class="pulse" aria-hidden="true"></span>
-          AlpovkApps — Product studio of Alperen Karavelioglu
+          Software studio of Alperen Karavelioglu
         </p>
 
         <h1 class="hero-title" id="heroTitle">
@@ -144,15 +150,11 @@
       <svg class="hero-badge" viewBox="0 0 100 100" aria-hidden="true">
         <defs><path id="circ" d="M50,50 m-38,0 a38,38 0 1,1 76,0 a38,38 0 1,1 -76,0"/></defs>
         <text font-size="9.5" letter-spacing="2.6" fill="currentColor">
-          <textPath href="#circ">PRODUCT STUDIO — ALPOVKAPPS — EST. 2023 —</textPath>
+          <textPath href="#circ">SOFTWARE STUDIO — ALPOVKAPPS — EST. 2023 —</textPath>
         </text>
         <path class="badge-a" d="M50 38 L57 58 H43 Z"/>
       </svg>
 
-      <a class="scroll-cue" href="#stats" aria-label="Scroll down">
-        <span class="caps">Scroll</span>
-        <span class="scroll-cue-line"></span>
-      </a>
     </section>
 
     <!-- ░ Stats -->
@@ -588,5 +590,6 @@
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <script src="assets/js/main.js" defer></script>
+  <script type="module" src="assets/js/hero3d.js"></script>
 </body>
 </html>

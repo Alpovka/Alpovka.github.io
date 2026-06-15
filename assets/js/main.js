@@ -30,7 +30,7 @@
   themeToggle.addEventListener("click", () => {
     const next = doc.dataset.theme === "dark" ? "light" : "dark";
     localStorage.setItem(THEME_KEY, next);
-    const swap = () => { applyTheme(next); refreshDustColor(); };
+    const swap = () => { applyTheme(next); };
 
     if (document.startViewTransition && !reduceMotion) {
       const rect = themeToggle.getBoundingClientRect();
@@ -132,12 +132,18 @@
   const closeMenu = () => {
     burger.classList.remove("is-open");
     navLinks.classList.remove("is-open");
+    header.classList.remove("menu-open");
     burger.setAttribute("aria-expanded", "false");
     body.style.overflow = "";
   };
 
   burger.addEventListener("click", () => {
     const open = !navLinks.classList.contains("is-open");
+    // The header is position:fixed and gets transformed on scroll (is-hidden).
+    // A transformed ancestor becomes the containing block for the fixed
+    // overlay, mispositioning it on lower sections — so neutralise it here.
+    if (open) header.classList.remove("is-hidden");
+    header.classList.toggle("menu-open", open);
     burger.classList.toggle("is-open", open);
     navLinks.classList.toggle("is-open", open);
     burger.setAttribute("aria-expanded", String(open));
@@ -311,6 +317,7 @@
   const worksIdx = document.getElementById("worksIdx");
   const worksBar = document.getElementById("worksBar");
   const workCardCount = 6;
+  const coverCards = worksTrack ? [...worksTrack.querySelectorAll(".work-card")] : [];
   let worksTop = 0;
   let worksMaxX = 0;
 
@@ -403,6 +410,16 @@
         worksIdx.textContent = String(1 + Math.round(p * (workCardCount - 1))).padStart(2, "0");
       }
       if (worksBar) worksBar.style.transform = `scaleX(${p})`;
+
+      // coverflow: cards swing in 3D and recede as they leave centre
+      const vcx = window.innerWidth / 2;
+      for (const card of coverCards) {
+        const r = card.getBoundingClientRect();
+        const off = clamp((r.left + r.width / 2 - vcx) / window.innerWidth, -1, 1);
+        card.style.setProperty("--cry", `${(-off * 24).toFixed(2)}deg`);
+        card.style.setProperty("--cz", `${(-Math.abs(off) * 260).toFixed(1)}px`);
+        card.style.setProperty("--cflat", (1 - Math.min(Math.abs(off) * 1.6, 0.7)).toFixed(3));
+      }
     }
 
     // big marquee: constant drift + scroll-velocity skew
@@ -471,83 +488,7 @@
     cursorLoop();
   }
 
-  /* ---------------- Dust canvas (hero) ---------------- */
-  const canvas = document.getElementById("heroCanvas");
-  let dustRGB = "200, 173, 126";
-
-  function refreshDustColor() {
-    dustRGB = getComputedStyle(doc).getPropertyValue("--dust").trim() || dustRGB;
-  }
-
-  if (canvas && !reduceMotion) {
-    const ctx = canvas.getContext("2d");
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    let specks = [];
-    let width = 0, height = 0;
-    let running = true;
-    let t = 0;
-
-    refreshDustColor();
-
-    const build = () => {
-      const rect = canvas.parentElement.getBoundingClientRect();
-      width = rect.width;
-      height = rect.height;
-      canvas.width = width * dpr;
-      canvas.height = height * dpr;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      const count = clamp(Math.floor((width * height) / 26000), 18, 60);
-      specks = Array.from({ length: count }, () => ({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        r: Math.random() * 1.4 + 0.4,
-        vx: -(Math.random() * 0.14 + 0.03),
-        vy: -(Math.random() * 0.1 + 0.02),
-        ph: Math.random() * Math.PI * 2,
-        sp: Math.random() * 0.014 + 0.006,
-      }));
-    };
-
-    const frame = () => {
-      if (!running) return;
-      t += 1;
-      ctx.clearRect(0, 0, width, height);
-      for (const s of specks) {
-        s.x += s.vx;
-        s.y += s.vy;
-        if (s.x < -8) s.x = width + 8;
-        if (s.y < -8) s.y = height + 8;
-        const a = 0.1 + 0.26 * (0.5 + 0.5 * Math.sin(s.ph + t * s.sp));
-        ctx.beginPath();
-        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${dustRGB}, ${a.toFixed(3)})`;
-        ctx.fill();
-      }
-      requestAnimationFrame(frame);
-    };
-
-    const visObserver = new IntersectionObserver(([en]) => {
-      const shouldRun = en.isIntersecting && !document.hidden;
-      if (shouldRun && !running) { running = true; frame(); }
-      else if (!shouldRun) running = false;
-    });
-    visObserver.observe(canvas.parentElement);
-    document.addEventListener("visibilitychange", () => {
-      const onScreen = canvas.parentElement.getBoundingClientRect().bottom > 0;
-      const shouldRun = !document.hidden && onScreen;
-      if (shouldRun && !running) { running = true; frame(); }
-      else if (!shouldRun) running = false;
-    });
-
-    let canvasResizeTimer;
-    window.addEventListener("resize", () => {
-      clearTimeout(canvasResizeTimer);
-      canvasResizeTimer = setTimeout(build, 200);
-    }, { passive: true });
-
-    build();
-    frame();
-  }
+  /* ---------------- Hero WebGL scene lives in assets/js/hero3d.js ---------------- */
 
   /* ---------------- Tilt (work cards) ---------------- */
   if (finePointer && !reduceMotion) {
@@ -558,14 +499,22 @@
       });
       card.addEventListener("pointermove", (e) => {
         const r = card.getBoundingClientRect();
-        const rx = (0.5 - (e.clientY - r.top) / r.height) * 3.4;
-        const ry = ((e.clientX - r.left) / r.width - 0.5) * 3.4;
-        card.style.transform = `perspective(1100px) rotateX(${rx.toFixed(2)}deg) rotateY(${ry.toFixed(2)}deg)`;
+        const rx = (0.5 - (e.clientY - r.top) / r.height) * 4.2;
+        const ry = ((e.clientX - r.left) / r.width - 0.5) * 4.2;
+        // Pointer tilt writes its own vars so it stacks with the
+        // scroll-driven coverflow rotation instead of overwriting it.
+        card.style.setProperty("--mrx", `${rx.toFixed(2)}deg`);
+        card.style.setProperty("--mry", `${ry.toFixed(2)}deg`);
+        const gx = ((e.clientX - r.left) / r.width * 100).toFixed(1);
+        const gy = ((e.clientY - r.top) / r.height * 100).toFixed(1);
+        card.style.setProperty("--gx", `${gx}%`);
+        card.style.setProperty("--gy", `${gy}%`);
       });
       card.addEventListener("pointerleave", () => {
         card.classList.remove("is-tilting");
         card.classList.add("is-tilt-leaving");
-        card.style.transform = "";
+        card.style.setProperty("--mrx", "0deg");
+        card.style.setProperty("--mry", "0deg");
         setTimeout(() => card.classList.remove("is-tilt-leaving"), 720);
       });
     });

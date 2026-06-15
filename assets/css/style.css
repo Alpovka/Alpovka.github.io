@@ -277,6 +277,16 @@ body.is-loading { overflow: hidden; }
   border-bottom-color: var(--line);
 }
 .header.is-hidden { transform: translateY(-100%); }
+/* While the mobile menu is open the header must not establish a containing
+   block for the fixed full-screen overlay — transform AND backdrop-filter
+   both do, so neutralise both (the open menu has its own opaque background). */
+.header.menu-open {
+  transform: none !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  background: transparent !important;
+  transition: none;
+}
 
 .nav {
   height: var(--header-h);
@@ -722,8 +732,27 @@ body.is-ready .anim-rise { animation: rise 1.05s var(--ease-out) var(--d, 0s) fo
   border: 1px solid var(--line);
   background: var(--surface);
   padding: clamp(28px, 3vw, 44px);
-  transition: border-color 0.4s ease, transform 0.4s var(--ease-out);
+  /* --cry/--cz come from the scroll coverflow, --mrx/--mry from pointer tilt */
+  transform:
+    perspective(1500px)
+    translateZ(var(--cz, 0px))
+    rotateY(calc(var(--cry, 0deg) + var(--mry, 0deg)))
+    rotateX(var(--mrx, 0deg));
+  opacity: calc(0.5 + 0.5 * var(--cflat, 1));
+  transition: border-color 0.4s ease, opacity 0.5s var(--ease-out);
 }
+/* cursor-tracked sheen, revealed only while tilting */
+.work-card::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: radial-gradient(460px circle at var(--gx, 50%) var(--gy, 50%),
+    color-mix(in srgb, var(--accent) 16%, transparent), transparent 58%);
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  pointer-events: none;
+  z-index: 2;
+}
+.work-card.is-tilting::after { opacity: 1; }
 .work-card:hover { border-color: var(--line-strong); }
 .work-card.is-flagship { width: clamp(480px, 52vw, 760px); }
 
@@ -809,6 +838,8 @@ body.is-ready .anim-rise { animation: rise 1.05s var(--ease-out) var(--d, 0s) fo
     padding-inline: var(--gutter);
   }
   .works-intro, .work-card, .work-card.is-flagship { width: 100%; }
+  .work-card { transform: none !important; opacity: 1 !important; }
+  .work-card::after { display: none; }
   .works-count { display: none; }
 }
 
