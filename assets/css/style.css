@@ -188,19 +188,22 @@ section { scroll-margin-top: var(--header-h); }
   transition: opacity 0.6s var(--ease-soft), visibility 0.6s;
 }
 .preloader.is-done { opacity: 0; visibility: hidden; }
-.preloader-mark .pl-frame,
+.preloader-mark .pl-wing,
 .preloader-mark .pl-a,
-.preloader-mark .pl-bar {
+.preloader-mark .pl-bar,
+.preloader-mark .pl-ant {
   stroke: #c8ad7e;
   stroke-dasharray: 200;
   stroke-dashoffset: 200;
   animation: pl-draw 1.1s var(--ease-out) forwards;
 }
+.preloader-mark .pl-wing { animation-duration: 1.3s; }
 .preloader-mark .pl-a { animation-delay: 0.12s; }
 .preloader-mark .pl-bar { stroke-dasharray: 30; stroke-dashoffset: 30; animation-delay: 0.4s; }
+.preloader-mark .pl-ant { animation-delay: 0.5s; }
 .preloader-mark .pl-dot {
   fill: #c8ad7e;
-  opacity: 0; transform-origin: 32px 3px;
+  opacity: 0; transform-origin: 32px 8px;
   animation: pl-pop 0.4s var(--ease-out) 0.55s forwards;
 }
 @keyframes pl-draw { to { stroke-dashoffset: 0; } }
@@ -296,6 +299,7 @@ body.is-loading { overflow: hidden; }
 .brand { display: inline-flex; align-items: center; gap: 12px; }
 .brand-mark { color: var(--fg); transition: color 0.3s ease, transform 0.6s var(--ease-out); }
 .brand-mark .mark-dot { fill: var(--accent); }
+.brand-mark .mk-bar, .cursor-mark .mk-bar { stroke: var(--accent); }
 .brand:hover .brand-mark { transform: rotate(-90deg); }
 .brand-name {
   font-family: var(--font-display);
@@ -685,6 +689,118 @@ body.is-ready .anim-rise { animation: rise 1.05s var(--ease-out) var(--d, 0s) fo
   transform: rotate(-45deg);
 }
 
+/* ---------- Reel (scroll-scrubbed cinematic showreel) ---------- */
+.reel { position: relative; background: var(--bg); }
+.reel-pin {
+  position: sticky; top: 0;
+  height: 100svh;
+  overflow: hidden;
+  display: flex; align-items: flex-end;
+  isolation: isolate;
+}
+/* the video "plate" — lifts in with perspective, settles flat (driven from JS) */
+.reel-stage {
+  position: absolute; inset: 0;
+  z-index: 0;
+  transform-origin: 50% 50%;
+  transform: scale(1.04);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+.reel-frame { position: absolute; inset: 0; overflow: hidden; }
+.reel-video {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  background: #000;
+}
+/* cinematic grading layers */
+.reel-glow {
+  position: absolute; inset: 0; pointer-events: none;
+  box-shadow: inset 0 0 240px 50px rgba(0, 0, 0, 0.5);
+}
+.reel-vignette {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(125% 95% at 50% 40%, transparent 50%, rgba(0, 0, 0, 0.58) 100%),
+    linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent 42%);
+}
+.reel-sheen {
+  position: absolute; inset: 0; pointer-events: none;
+  /* no blend mode — a screen blend re-composites over the video every seeked
+     frame, which is a per-frame paint cost during scrubbing */
+  background: linear-gradient(118deg, transparent 42%, rgba(255, 255, 255, 0.045) 50%, transparent 58%);
+}
+/* darkening scrim so overlaid copy stays readable over the footage */
+.reel-scrim {
+  position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(to bottom, rgba(8, 8, 9, 0.62), rgba(8, 8, 9, 0.42) 38%, rgba(8, 8, 9, 0.78));
+}
+
+/* scene layer — stats, manifesto etc. cross-fade over the scrubbing video */
+.reel-scenes { position: absolute; inset: 0; z-index: 1; }
+.reel-scene {
+  position: absolute; inset: 0;
+  display: flex; align-items: center;
+  opacity: 0;
+  will-change: opacity, transform;
+  color: #f4f1ea;
+}
+.reel-kicker { color: rgba(244, 241, 234, 0.72); margin-bottom: 20px; }
+.reel-kicker::before { background: var(--accent); }
+
+.reel-title {
+  font-family: var(--font-display);
+  font-weight: 500; letter-spacing: -0.035em;
+  font-size: clamp(2.4rem, 6vw, 5rem);
+  line-height: 1; max-width: 16ch;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+.reel-title em { color: var(--accent-strong); }
+
+/* stats over video */
+.reel-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(20px, 3vw, 56px); }
+.reel-stat { position: relative; }
+.reel-stat + .reel-stat::before {
+  content: ""; position: absolute; left: calc(-1 * clamp(10px, 1.5vw, 28px));
+  top: 4px; bottom: 4px; width: 1px; background: rgba(244, 241, 234, 0.16);
+}
+.reel-stat-value {
+  font-family: var(--font-display); font-weight: 500;
+  font-size: clamp(2.4rem, 4.6vw, 4.2rem); line-height: 1;
+  letter-spacing: -0.04em; font-variant-numeric: tabular-nums;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+.reel-stat-value .s { color: var(--accent-strong); }
+.reel-stat-label { margin-top: 14px; max-width: 22ch; font-size: 0.92rem; color: rgba(244, 241, 234, 0.72); }
+
+/* manifesto over video — word-by-word illumination */
+.reel-manifesto {
+  font-family: var(--font-display); font-weight: 500;
+  font-size: clamp(1.7rem, 3.4vw, 3rem); line-height: 1.3;
+  letter-spacing: -0.025em; max-width: 1000px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+  /* isolate paints to this block so lighting a word doesn't repaint siblings */
+  contain: layout style paint;
+}
+.reel-manifesto .w { opacity: 0.22; transition: opacity 0.18s linear; }
+.reel-manifesto .w.lit { opacity: 1; }
+.reel-manifesto em { color: var(--accent-strong); }
+
+.reel-outro {
+  display: inline-flex; align-items: center; gap: 14px;
+  color: rgba(244, 241, 234, 0.82);
+}
+.reel-outro svg { color: var(--accent); animation: reel-bob 1.8s var(--ease-soft) infinite; }
+@keyframes reel-bob { 0%, 100% { transform: translateY(-2px); } 50% { transform: translateY(3px); } }
+
+/* overall sequence progress rail */
+.reel-rail {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 2px;
+  background: rgba(244, 241, 234, 0.14); z-index: 2;
+}
+.reel-rail span { display: block; height: 100%; background: var(--accent); transform: scaleX(0); transform-origin: 0 50%; }
+
 /* ---------- Work (pinned horizontal gallery) ---------- */
 .works { position: relative; }
 .works-pin {
@@ -841,6 +957,28 @@ body.is-ready .anim-rise { animation: rise 1.05s var(--ease-out) var(--d, 0s) fo
   .work-card { transform: none !important; opacity: 1 !important; }
   .work-card::after { display: none; }
   .works-count { display: none; }
+
+  /* reel: no pin/scrub on small screens — video plate then stacked scenes */
+  .reel { height: auto !important; }
+  .reel-pin { position: static; height: auto; overflow: visible; display: block; }
+  .reel-stage { position: relative; height: 60svh; transform: none !important; opacity: 1 !important; }
+  .reel-scenes { position: static; }
+  .reel-scene {
+    position: static; display: block;
+    opacity: 1 !important; transform: none !important;
+    color: var(--fg); padding: clamp(48px, 9vw, 80px) 0;
+  }
+  .reel-scene + .reel-scene { border-top: 1px solid var(--line); }
+  .reel-kicker { color: var(--fg-mid); }
+  .reel-title, .reel-stat-value, .reel-manifesto { text-shadow: none; }
+  .reel-stats { grid-template-columns: 1fr 1fr; gap: 36px 24px; }
+  .reel-stat + .reel-stat::before { display: none; }
+  .reel-stat-value .s { color: var(--accent); }
+  .reel-stat-label { color: var(--fg-mid); }
+  .reel-manifesto .w { opacity: 1 !important; }
+  .reel-manifesto em { color: var(--accent); }
+  .reel-outro { color: var(--fg-faint); }
+  .reel-rail { display: none; }
 }
 
 /* ---------- Process ---------- */
@@ -1120,4 +1258,23 @@ body.is-ready .anim-rise { animation: rise 1.05s var(--ease-out) var(--d, 0s) fo
   .works-pin { position: static; height: auto; }
   .works { height: auto !important; }
   .works-track { flex-wrap: wrap; width: auto; transform: none !important; }
+  .reel { height: auto !important; }
+  .reel-pin { position: static; height: auto; overflow: visible; display: block; }
+  .reel-stage { position: relative; height: 70svh; transform: none !important; opacity: 1 !important; }
+  .reel-scenes { position: static; }
+  .reel-scene {
+    position: static; display: block;
+    opacity: 1 !important; transform: none !important;
+    color: var(--fg); padding: clamp(60px, 9vw, 100px) 0;
+  }
+  .reel-scene + .reel-scene { border-top: 1px solid var(--line); }
+  .reel-kicker { color: var(--fg-mid); }
+  .reel-title, .reel-stat-value, .reel-manifesto { text-shadow: none; }
+  .reel-stat-value .s { color: var(--accent); }
+  .reel-stat-label { color: var(--fg-mid); }
+  .reel-manifesto .w { opacity: 1 !important; }
+  .reel-manifesto em { color: var(--accent); }
+  .reel-outro { color: var(--fg-faint); }
+  .reel-outro svg { animation: none; }
+  .reel-rail { display: none; }
 }
