@@ -2,3 +2,7 @@
 Thumbs.db
 node_modules/
 *.log
+
+# stale Next.js leftovers — this is a plain static site, no build step
+.next/
+next-env.d.ts
