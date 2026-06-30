@@ -555,61 +555,6 @@
       }
     }
 
-    // cinematic reel: scrub the video while overlaid scenes cross-fade
-    if (reelScrub && reelStage) {
-      // 3D lift: tilt + scale before/after the pin engages, flat while pinned
-      const approach = clamp((reelTop - y) / vh, 0, 1);             // 1 = below, 0 = pinned
-      const exit = clamp((y - (reelTop + reelMaxScroll)) / vh, 0, 1); // 0 = pinned, 1 = gone
-      const edge = approach > 0 ? approach : -exit;
-      reelStage.style.transform =
-        `perspective(1600px) rotateX(${(edge * 4).toFixed(2)}deg) scale(${(1.04 + Math.abs(edge) * 0.08).toFixed(3)})`;
-      reelStage.style.opacity = (1 - Math.abs(edge) * 0.4).toFixed(3);
-
-      if (reelReady && reelMaxScroll > 0) {
-        const p = clamp((y - reelTop) / reelMaxScroll, 0, 1);
-
-        // video time tracks sequence progress (lerped for silkiness)
-        const targetTime = p * (reelDuration - 0.05);
-        reelDisplayTime = Math.abs(reelDisplayTime - targetTime) < 0.004
-          ? targetTime
-          : lerp(reelDisplayTime, targetTime, 0.18);
-        // skip while a seek is mid-flight so requests never pile up
-        if (!reelVideo.seeking && Math.abs(reelVideo.currentTime - reelDisplayTime) > 0.012) {
-          reelVideo.currentTime = reelDisplayTime;
-        }
-        if (reelBarFill) reelBarFill.style.transform = `scaleX(${p.toFixed(4)})`;
-
-        // fade + drift each scene through its window
-        for (let i = 0; i < reelScenes.length; i++) {
-          const w = REEL_WINDOWS[i];
-          const o = reelEnvelope(p, w);
-          const scene = reelScenes[i];
-          scene.style.opacity = o.toFixed(3);
-          scene.style.visibility = o > 0.001 ? "visible" : "hidden";
-          const mid = (w.in + w.out) / 2;
-          const rel = clamp((p - mid) / ((w.out - w.in) / 2), -1, 1);
-          scene.style.transform = `translate3d(0, ${(rel * -26).toFixed(1)}px, 0)`;
-        }
-
-        // count the stats up the first time their scene appears
-        if (!reelCounted && p > REEL_WINDOWS[1].in + 0.005 && p < REEL_WINDOWS[1].out) runReelCounters();
-
-        // illuminate the manifesto word by word across its window
-        if (reelMfWords.length) {
-          const w = REEL_WINDOWS[2];
-          const readP = clamp((p - (w.in + 0.04)) / ((w.out - 0.05) - (w.in + 0.04)), 0, 1);
-          const lit = Math.round(readP * reelMfWords.length);
-          if (lit !== reelMfLit) {
-            // only flip the words between the old and new boundary, not all of them
-            const from = Math.max(0, Math.min(lit, reelMfLit));
-            const to = Math.max(lit, reelMfLit);
-            for (let i = from; i < to; i++) reelMfWords[i].classList.toggle("lit", i < lit);
-            reelMfLit = lit;
-          }
-        }
-      }
-    }
-
     // big marquee: constant drift + scroll-velocity skew
     if (marqueeBig && marqueeVisible && marqueeWidth > 0) {
       marqueeX = (marqueeX - 0.55 - Math.abs(frameVelocity) * 0.06) % marqueeWidth;
