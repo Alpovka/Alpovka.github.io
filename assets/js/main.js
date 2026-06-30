@@ -335,6 +335,139 @@
     worksTop = worksSection.getBoundingClientRect().top + window.scrollY;
   };
 
+  /* ---------------- Scroll-scrubbed cinematic reel ----------------
+     The pinned reel maps scroll distance to video.currentTime, so the
+     clip plays forward as you scroll down and reverses as you scroll up.
+     The all-intra encode (every frame a keyframe) makes those seeks
+     instant in both directions; an extra lerp on the time keeps it silky.
+     Desktop scrubs; mobile / reduced-motion fall back to a plain plate. */
+  const reelSection = document.getElementById("reel");
+  const reelVideo = document.getElementById("reelVideo");
+  const reelStage = document.getElementById("reelStage");
+  const reelBarFill = document.getElementById("reelBarFill");
+  const reelScenes = [...document.querySelectorAll("#reelScenes .reel-scene")];
+  const REEL_SCRUB_VH = 4.6; // viewport-heights of scroll across the whole sequence
+  // each scene's [in, out] window along sequence progress p ∈ [0,1]
+  const REEL_WINDOWS = [
+    { in: -0.03, out: 0.18 }, // intro title
+    { in: 0.22, out: 0.48 },  // stats
+    { in: 0.52, out: 0.86 },  // manifesto
+    { in: 0.90, out: 1.06 },  // outro
+  ];
+  const REEL_FADE = 0.05;
+  let reelTop = 0, reelMaxScroll = 0, reelDuration = 0, reelDisplayTime = 0;
+  let reelReady = false, reelLoaded = false, reelScrub = false;
+
+  // stat counters — run once when the stats scene lights up
+  const reelCounters = [...document.querySelectorAll("[data-rcount]")];
+  let reelCounted = false;
+  const runReelCounters = () => {
+    if (reelCounted) return;
+    reelCounted = true;
+    reelCounters.forEach((el) => {
+      const target = parseFloat(el.dataset.rcount);
+      if (reduceMotion) { el.textContent = target; return; }
+      const start = performance.now();
+      const tick = (now) => {
+        const t = clamp((now - start) / 1400, 0, 1);
+        el.textContent = Math.round(target * (1 - Math.pow(1 - t, 4)));
+        if (t < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    });
+  };
+
+  // manifesto word-by-word illumination (tied to its scene's scroll window)
+  const reelManifesto = document.getElementById("reelManifesto");
+  let reelMfWords = [];
+  let reelMfLit = -1;
+  if (reelManifesto && !reduceMotion) {
+    const wrapReelWords = (node) => {
+      [...node.childNodes].forEach((child) => {
+        if (child.nodeType === Node.TEXT_NODE) {
+          const frag = document.createDocumentFragment();
+          child.textContent.split(/(\s+)/).forEach((piece) => {
+            if (piece === "" || /^\s+$/.test(piece)) {
+              frag.appendChild(document.createTextNode(piece));
+            } else {
+              const s = document.createElement("span");
+              s.className = "w";
+              s.textContent = piece;
+              frag.appendChild(s);
+            }
+          });
+          node.replaceChild(frag, child);
+        } else if (child.nodeType === Node.ELEMENT_NODE) {
+          wrapReelWords(child);
+        }
+      });
+    };
+    wrapReelWords(reelManifesto);
+    reelMfWords = [...reelManifesto.querySelectorAll(".w")];
+  }
+
+  // 0→1→0 envelope across a scene window, with soft fades at each edge
+  const reelEnvelope = (p, w) => {
+    if (p <= w.in || p >= w.out) return 0;
+    return Math.max(0, Math.min(1, (p - w.in) / REEL_FADE, (w.out - p) / REEL_FADE));
+  };
+
+  const layoutReel = () => {
+    if (!reelSection) return;
+    reelScrub = window.innerWidth > 900 && !reduceMotion;
+    if (!reelScrub) {
+      reelSection.style.height = "";
+      reelMaxScroll = 0;
+      if (reelStage) reelStage.style.transform = "";
+      reelScenes.forEach((s) => { s.style.opacity = ""; s.style.transform = ""; s.style.visibility = ""; });
+      return;
+    }
+    reelSection.style.height = `${window.innerHeight * (1 + REEL_SCRUB_VH)}px`;
+    reelMaxScroll = window.innerHeight * REEL_SCRUB_VH;
+    reelTop = reelSection.getBoundingClientRect().top + window.scrollY;
+  };
+
+  if (reelVideo) {
+    const loadReel = () => {
+      if (reelLoaded || reduceMotion) return;
+      reelLoaded = true;
+      // small screens never scrub — give them the light 720p loop instead
+      reelVideo.src = window.innerWidth <= 900
+        ? "assets/video/reel-mobile.mp4"
+        : "assets/video/reel.mp4";
+      reelVideo.load();
+    };
+
+    reelVideo.addEventListener("loadedmetadata", () => {
+      reelDuration = reelVideo.duration || 7;
+      reelReady = true;
+    });
+
+    // load lazily as the reel approaches; loop-play it where we don't scrub
+    const reelIO = new IntersectionObserver(([en]) => {
+      if (en.isIntersecting) {
+        loadReel();
+        if (!reelScrub && !reduceMotion) {
+          reelVideo.loop = true;
+          reelVideo.play().catch(() => {});
+        }
+      } else if (!reelScrub) {
+        reelVideo.pause();
+      }
+    }, { rootMargin: "60% 0px 60% 0px" });
+    reelIO.observe(reelSection);
+  }
+
+  // when we're NOT scrubbing (mobile / reduced-motion), the scenes are just
+  // stacked — so count the stats up the usual way, on scroll into view.
+  const reelStatsEl = document.querySelector(".reel-stats");
+  if (reelStatsEl) {
+    const reelStatsIO = new IntersectionObserver(([en]) => {
+      if (en.isIntersecting && !reelScrub) { runReelCounters(); reelStatsIO.disconnect(); }
+    }, { threshold: 0.35 });
+    reelStatsIO.observe(reelStatsEl);
+  }
+
   /* ---------------- Story stacking cards ---------------- */
   const storyCards = [...document.querySelectorAll(".story-card")];
 
@@ -562,6 +695,7 @@
   /* ---------------- Layout + boot ---------------- */
   const relayout = () => {
     layoutWorks();
+    layoutReel();
     measureMarquee();
   };
 
